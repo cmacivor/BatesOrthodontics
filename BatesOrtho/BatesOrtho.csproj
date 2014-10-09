@@ -224,6 +224,7 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AppointmentRequest.cshtml" />
+    <Content Include="Views\Home\Patients.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
