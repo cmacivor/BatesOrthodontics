@@ -2,4 +2,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
+<br />
+<div>
+    First Name: <input type="text" id="txtFirstName" /><br />
+    LastName: <input type="text" id="txtLastName" /><br />
+    Date of Birth: <input type="text" id="txtDOB" /><br />
+    Res. Party First Name: <input type="text" id="txtRespPartyFirstName" /><br />
+    Res. Party Last Name: <input type="text" id="txtRespPartyLastName" /><br />
+    New Patient? <select id="ddlNewPatient">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <br />
+    Phone: <input type="tel" id="txtPhone" /><br />
+    Email: <input type="email" id="txtEmail" /><br />
+    Preferred Mode of Contact: <select id="ddlModeOfContact">
+        <option value="Phone">Phone</option>
+        <option value="Email">Email</option>
+    </select><br />
+    Preferred Appointment Days: <br />
+    <input type="checkbox" name="prefApptDays" value="Monday" />Monday (West End)<br />
+    <input type="checkbox" name="prefApptDays" value="Tuesday" />Tuesday (West End)<br />
+    <input type="checkbox" name="prefApptDays" value="Wednesday" />Wednesday (West End)<br />
+    <input type="checkbox" name="prefApptDays" value="Thursday" />Thursday (Mechanicsville)<br />
+    Convenient Times: <input type="text" id="txtConvenientTimes" /><br />
+    How did you hear about our practice? <input type="text" id="txtHowDidYouHear" /><br />
+    Name of General Dentist: <input type="text" id="txtGeneralDentistName" /><br />
+    Additional Comments: <input type="text" id="txtAdditionalComments" /><br />
+    <button id="btnSaveAppointmentRequest">Save</button>
+</div>
 
+@section scripts 
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>
+}

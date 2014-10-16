@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -153,19 +155,62 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppointmentRequest.cs">
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BatesOrtho.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BatesOrtho.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BatesOrtho.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BatesOrtho.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BatesOrtho.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BatesOrtho.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BatesOrthoModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BatesOrthoModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BatesOrthoModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DoctorReferral.cs">
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FriendReferral.cs">
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PreferredAppointmentDay.cs">
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SponsershipRequestAdType.cs">
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SponsorshipRequest.cs">
+      <DependentUpon>BatesOrthoModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +226,33 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="BatesOrtho.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BatesOrtho.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="BatesOrtho.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BatesOrtho.edmx</DependentUpon>
+      <LastGenOutput>BatesOrtho.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BatesOrtho.edmx.diagram">
+      <DependentUpon>BatesOrtho.edmx</DependentUpon>
+    </Content>
+    <Content Include="BatesOrtho.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BatesOrtho.edmx</DependentUpon>
+      <LastGenOutput>BatesOrtho.cs</LastGenOutput>
+    </Content>
+    <Content Include="BatesOrthoModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BatesOrthoModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BatesOrthoModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BatesOrthoModels.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CRUD.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -226,7 +297,9 @@
     <Content Include="Views\Home\AppointmentRequest.cshtml" />
     <Content Include="Views\Home\Patients.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
