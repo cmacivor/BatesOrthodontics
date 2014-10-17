@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BatesOrthoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BatesOrthoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AppointmentRequest">
           <Key>
             <PropertyRef Name="AppointmentRequestID" />
@@ -15,7 +15,7 @@
           <Property Name="DOB" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ResponsiblePartyFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ResponsiblePartyLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IsNewPatient" Type="bit" Nullable="false" />
+          <Property Name="IsNewPatient" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PreferredModeOfContact" Type="nchar" MaxLength="10" Nullable="false" />
@@ -58,7 +58,7 @@
           <Key>
             <PropertyRef Name="PreferredAppointmentDayID" />
           </Key>
-          <Property Name="PreferredAppointmentDayID" Type="int" Nullable="false" />
+          <Property Name="PreferredAppointmentDayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AppointmentRequestDay" Type="nchar" MaxLength="10" />
           <Property Name="AppointmentRequestID" Type="int" />
         </EntityType>
@@ -110,6 +110,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_PreferredDay">
+          <End Role="AppointmentRequest" Type="Self.AppointmentRequest" Multiplicity="0..1" />
+          <End Role="PreferredAppointmentDay" Type="Self.PreferredAppointmentDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppointmentRequest">
+              <PropertyRef Name="AppointmentRequestID" />
+            </Principal>
+            <Dependent Role="PreferredAppointmentDay">
+              <PropertyRef Name="AppointmentRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BatesOrthoModelStoreContainer">
           <EntitySet Name="AppointmentRequest" EntityType="Self.AppointmentRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorReferral" EntityType="Self.DoctorReferral" Schema="dbo" store:Type="Tables" />
@@ -121,31 +133,15 @@
             <End Role="SponsorshipRequest" EntitySet="SponsorshipRequest" />
             <End Role="SponsershipRequestAdType" EntitySet="SponsershipRequestAdType" />
           </AssociationSet>
+          <AssociationSet Name="fk_PreferredDay" Association="Self.fk_PreferredDay">
+            <End Role="AppointmentRequest" EntitySet="AppointmentRequest" />
+            <End Role="PreferredAppointmentDay" EntitySet="PreferredAppointmentDay" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BatesOrthoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AppointmentRequest">
-          <Key>
-            <PropertyRef Name="AppointmentRequestID" />
-          </Key>
-          <Property Name="AppointmentRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ResponsiblePartyFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ResponsiblePartyLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsNewPatient" Type="Boolean" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PreferredModeOfContact" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="ConvenientTimes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HowDidYouHear" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="GeneralDentistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AdditionalComments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="DoctorReferral">
           <Key>
             <PropertyRef Name="DoctorReferralID" />
@@ -175,14 +171,6 @@
           <Property Name="PatientPhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PatientEmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PreferredAppointmentDay">
-          <Key>
-            <PropertyRef Name="PreferredAppointmentDayID" />
-          </Key>
-          <Property Name="PreferredAppointmentDayID" Type="Int32" Nullable="false" />
-          <Property Name="AppointmentRequestDay" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="AppointmentRequestID" Type="Int32" />
         </EntityType>
         <EntityType Name="SponsershipRequestAdType">
           <Key>
@@ -235,43 +223,68 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BatesOrthoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AppointmentRequests" EntityType="Self.AppointmentRequest" />
           <EntitySet Name="DoctorReferrals" EntityType="Self.DoctorReferral" />
           <EntitySet Name="FriendReferrals" EntityType="Self.FriendReferral" />
-          <EntitySet Name="PreferredAppointmentDays" EntityType="Self.PreferredAppointmentDay" />
           <EntitySet Name="SponsershipRequestAdTypes" EntityType="Self.SponsershipRequestAdType" />
           <EntitySet Name="SponsorshipRequests" EntityType="Self.SponsorshipRequest" />
           <AssociationSet Name="FK__Sponsersh__DueDa__30F848ED" Association="Self.FK__Sponsersh__DueDa__30F848ED">
             <End Role="SponsorshipRequest" EntitySet="SponsorshipRequests" />
             <End Role="SponsershipRequestAdType" EntitySet="SponsershipRequestAdTypes" />
           </AssociationSet>
+          <EntitySet Name="PreferredAppointmentDays" EntityType="BatesOrthoModel.PreferredAppointmentDay" />
+          <EntitySet Name="AppointmentRequests" EntityType="BatesOrthoModel.AppointmentRequest" />
+          <AssociationSet Name="fk_PreferredDay" Association="BatesOrthoModel.fk_PreferredDay">
+            <End Role="AppointmentRequest" EntitySet="AppointmentRequests" />
+            <End Role="PreferredAppointmentDay" EntitySet="PreferredAppointmentDays" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PreferredAppointmentDay">
+          <Key>
+            <PropertyRef Name="PreferredAppointmentDayID" />
+          </Key>
+          <Property Name="PreferredAppointmentDayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppointmentRequestDay" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AppointmentRequestID" Type="Int32" />
+          <NavigationProperty Name="AppointmentRequest" Relationship="BatesOrthoModel.fk_PreferredDay" FromRole="PreferredAppointmentDay" ToRole="AppointmentRequest" />
+        </EntityType>
+        <EntityType Name="AppointmentRequest">
+          <Key>
+            <PropertyRef Name="AppointmentRequestID" />
+          </Key>
+          <Property Name="AppointmentRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ResponsiblePartyFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsiblePartyLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsNewPatient" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredModeOfContact" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ConvenientTimes" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HowDidYouHear" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GeneralDentistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalComments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PreferredAppointmentDays" Relationship="BatesOrthoModel.fk_PreferredDay" FromRole="AppointmentRequest" ToRole="PreferredAppointmentDay" />
+        </EntityType>
+        <Association Name="fk_PreferredDay">
+          <End Type="BatesOrthoModel.AppointmentRequest" Role="AppointmentRequest" Multiplicity="0..1" />
+          <End Type="BatesOrthoModel.PreferredAppointmentDay" Role="PreferredAppointmentDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppointmentRequest">
+              <PropertyRef Name="AppointmentRequestID" />
+            </Principal>
+            <Dependent Role="PreferredAppointmentDay">
+              <PropertyRef Name="AppointmentRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BatesOrthoModelStoreContainer" CdmEntityContainer="BatesOrthoEntities">
-          <EntitySetMapping Name="AppointmentRequests">
-            <EntityTypeMapping TypeName="BatesOrthoModel.AppointmentRequest">
-              <MappingFragment StoreEntitySet="AppointmentRequest">
-                <ScalarProperty Name="AppointmentRequestID" ColumnName="AppointmentRequestID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="ResponsiblePartyFirstName" ColumnName="ResponsiblePartyFirstName" />
-                <ScalarProperty Name="ResponsiblePartyLastName" ColumnName="ResponsiblePartyLastName" />
-                <ScalarProperty Name="IsNewPatient" ColumnName="IsNewPatient" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PreferredModeOfContact" ColumnName="PreferredModeOfContact" />
-                <ScalarProperty Name="ConvenientTimes" ColumnName="ConvenientTimes" />
-                <ScalarProperty Name="HowDidYouHear" ColumnName="HowDidYouHear" />
-                <ScalarProperty Name="GeneralDentistName" ColumnName="GeneralDentistName" />
-                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DoctorReferrals">
             <EntityTypeMapping TypeName="BatesOrthoModel.DoctorReferral">
               <MappingFragment StoreEntitySet="DoctorReferral">
@@ -301,15 +314,6 @@
                 <ScalarProperty Name="PatientPhoneNumber" ColumnName="PatientPhoneNumber" />
                 <ScalarProperty Name="PatientEmailAddress" ColumnName="PatientEmailAddress" />
                 <ScalarProperty Name="Relationship" ColumnName="Relationship" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PreferredAppointmentDays">
-            <EntityTypeMapping TypeName="BatesOrthoModel.PreferredAppointmentDay">
-              <MappingFragment StoreEntitySet="PreferredAppointmentDay">
-                <ScalarProperty Name="PreferredAppointmentDayID" ColumnName="PreferredAppointmentDayID" />
-                <ScalarProperty Name="AppointmentRequestDay" ColumnName="AppointmentRequestDay" />
-                <ScalarProperty Name="AppointmentRequestID" ColumnName="AppointmentRequestID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -348,6 +352,35 @@
                 <ScalarProperty Name="SendCheckToState" ColumnName="SendCheckToState" />
                 <ScalarProperty Name="SendCheckToZip" ColumnName="SendCheckToZip" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreferredAppointmentDays">
+            <EntityTypeMapping TypeName="BatesOrthoModel.PreferredAppointmentDay">
+              <MappingFragment StoreEntitySet="PreferredAppointmentDay">
+                <ScalarProperty Name="AppointmentRequestID" ColumnName="AppointmentRequestID" />
+                <ScalarProperty Name="AppointmentRequestDay" ColumnName="AppointmentRequestDay" />
+                <ScalarProperty Name="PreferredAppointmentDayID" ColumnName="PreferredAppointmentDayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppointmentRequests">
+            <EntityTypeMapping TypeName="BatesOrthoModel.AppointmentRequest">
+              <MappingFragment StoreEntitySet="AppointmentRequest">
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="GeneralDentistName" ColumnName="GeneralDentistName" />
+                <ScalarProperty Name="HowDidYouHear" ColumnName="HowDidYouHear" />
+                <ScalarProperty Name="ConvenientTimes" ColumnName="ConvenientTimes" />
+                <ScalarProperty Name="PreferredModeOfContact" ColumnName="PreferredModeOfContact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IsNewPatient" ColumnName="IsNewPatient" />
+                <ScalarProperty Name="ResponsiblePartyLastName" ColumnName="ResponsiblePartyLastName" />
+                <ScalarProperty Name="ResponsiblePartyFirstName" ColumnName="ResponsiblePartyFirstName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="AppointmentRequestID" ColumnName="AppointmentRequestID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

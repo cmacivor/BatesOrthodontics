@@ -14,13 +14,18 @@ namespace BatesOrtho
     
     public partial class AppointmentRequest
     {
+        public AppointmentRequest()
+        {
+            this.PreferredAppointmentDays = new HashSet<PreferredAppointmentDay>();
+        }
+    
         public int AppointmentRequestID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public System.DateTime DOB { get; set; }
         public string ResponsiblePartyFirstName { get; set; }
         public string ResponsiblePartyLastName { get; set; }
-        public bool IsNewPatient { get; set; }
+        public string IsNewPatient { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string PreferredModeOfContact { get; set; }
@@ -28,5 +33,7 @@ namespace BatesOrtho
         public string HowDidYouHear { get; set; }
         public string GeneralDentistName { get; set; }
         public string AdditionalComments { get; set; }
+    
+        public virtual ICollection<PreferredAppointmentDay> PreferredAppointmentDays { get; set; }
     }
 }

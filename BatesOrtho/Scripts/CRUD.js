@@ -7,8 +7,6 @@ $(document).ready(function (){
 
     $('#btnSaveAppointmentRequest').click(function () {
         var firstName = $('#txtFirstName').val();
-        //alert(firstName);
-
         var lastName = $('#txtLastName').val();
         var dob = $('#txtDOB').val();
         var respPartyFirstName = $('#txtRespPartyFirstName').val();
@@ -22,6 +20,14 @@ $(document).ready(function (){
         var dentistName = $('#txtGeneralDentistName').val();
         var comments = $('#txtAdditionalComments').val();
 
+        //for the checkboxes
+        var checkedValues = $('input[name="prefApptDays"]:checked').map(function () {
+            return this.value;
+        }).get();
+
+        //var jsonarray =  JSON.stringify(checkedValues);
+        //console.log(jsonarray);
+        //console.log(checkedValues);
         $.ajax({
             url: "/Home/CreateAppointmentRequest",
             type: "POST",
@@ -42,14 +48,44 @@ $(document).ready(function (){
                     'GeneralDentistName': dentistName,
                     'AdditionalComments': comments
                 }
+                //preferredDays: { 'AppointmentRequestDay': checkedValues }
+
             }),
             success: function (data) {
-                alert(data);
+                //alert(data);
+                $('#txtLastName').val('');
+                $('#txtLastName').val('');
+                $('#txtDOB').val('');
+                $('#txtRespPartyFirstName').val('');
+                $('#txtRespPartyLastName').val('');
+                $('#txtPhone').val('');
+                $('#txtEmail').val('');
+                $('#txtConvenientTimes').val('');
+                $('#txtHowDidYouHear').val('');
+                $('#txtGeneralDentistName').val('');
+                $('#txtGeneralDentistName').val('');
+                $('#txtAdditionalComments').val('');
+                //$(this).closest('form').find("input[type=text], textarea").val("");
             },
             error: function (data) {
                 alert(data);
             }
         });
+
+        //now insert the preferred times into the PreferredAppointmentDay table
+        $.ajax({
+            url: "/Home/CreatePreferredAppointmentDay",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(checkedValues),
+            success: function (data) {
+                alert('success');
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
     });
 });
 

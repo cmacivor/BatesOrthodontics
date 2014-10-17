@@ -25,11 +25,11 @@ namespace BatesOrtho
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AppointmentRequest> AppointmentRequests { get; set; }
         public virtual DbSet<DoctorReferral> DoctorReferrals { get; set; }
         public virtual DbSet<FriendReferral> FriendReferrals { get; set; }
-        public virtual DbSet<PreferredAppointmentDay> PreferredAppointmentDays { get; set; }
         public virtual DbSet<SponsershipRequestAdType> SponsershipRequestAdTypes { get; set; }
         public virtual DbSet<SponsorshipRequest> SponsorshipRequests { get; set; }
+        public virtual DbSet<PreferredAppointmentDay> PreferredAppointmentDays { get; set; }
+        public virtual DbSet<AppointmentRequest> AppointmentRequests { get; set; }
     }
 }

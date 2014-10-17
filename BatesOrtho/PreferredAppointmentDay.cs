@@ -17,5 +17,7 @@ namespace BatesOrtho
         public int PreferredAppointmentDayID { get; set; }
         public string AppointmentRequestDay { get; set; }
         public Nullable<int> AppointmentRequestID { get; set; }
+    
+        public virtual AppointmentRequest AppointmentRequest { get; set; }
     }
 }

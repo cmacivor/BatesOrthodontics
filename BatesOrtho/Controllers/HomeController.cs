@@ -40,11 +40,38 @@ namespace BatesOrtho.Controllers
         [HttpPost]
         public JsonResult CreateAppointmentRequest(AppointmentRequest apptRequest)
         {
+           
             using (var ctx = new BatesOrthoEntities())
             {
                 ctx.AppointmentRequests.Add(apptRequest);
                 ctx.SaveChanges();
             }
+            return Json("OK");
+        }
+
+        [HttpPost]
+        public JsonResult CreatePreferredAppointmentDay(string[] checkedValues)
+        {
+            using (var ctx = new BatesOrthoEntities())
+            {
+                var justEntered = (from a in ctx.AppointmentRequests
+                                   orderby a.AppointmentRequestID descending
+                                   select a).FirstOrDefault();
+
+                foreach (var day in checkedValues)
+                {
+                    PreferredAppointmentDay preferredDay = new PreferredAppointmentDay();
+                    preferredDay.AppointmentRequestDay = day;
+                    preferredDay.AppointmentRequestID = justEntered.AppointmentRequestID;
+                    ctx.PreferredAppointmentDays.Add(preferredDay);
+                    
+                }
+                ctx.SaveChanges();
+            }
+
+
+
+
             return Json("OK");
         }
     }
