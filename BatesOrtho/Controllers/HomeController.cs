@@ -37,6 +37,22 @@ namespace BatesOrtho.Controllers
             return View();
         }
 
+        public ActionResult DoctorReferral()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult CreateDoctorReferral(DoctorReferral referral)
+        {
+            using (var ctx = new BatesOrthoEntities())
+            {
+               ctx.DoctorReferrals.Add(referral);
+               ctx.SaveChanges();
+            }
+            return Json("OK");
+        }
+
         [HttpPost]
         public JsonResult CreateAppointmentRequest(AppointmentRequest apptRequest)
         {
@@ -69,10 +85,9 @@ namespace BatesOrtho.Controllers
                 ctx.SaveChanges();
             }
 
-
-
-
             return Json("OK");
         }
+
+
     }
 }

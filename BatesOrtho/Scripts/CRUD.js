@@ -5,6 +5,55 @@
 
 $(document).ready(function (){
 
+    $('#btnSaveDoctorReferral').click(function () {
+        var firstName = $('#txtDoctorFirstName').val();
+        var lastName = $('#txtDoctorLastName').val();
+        var practiceName = $('#txtPracticeName').val();
+        var email = $('#txtEmail').val();
+        var patientFirstName = $('#txtPatientFirstName').val();
+        var patientLastName = $('#txtPatientLastName').val();
+        var patientPhone = $('#txtPatientPhone').val();
+        var patientEmail = $('#txtEmail').val();
+        var radiographsSent = $("input:radio[name ='radiograph']:checked").val();
+        var comments = $('#txtComments').val();
+
+        $.ajax({
+            url: "/Home/CreateDoctorReferral",
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                referral: {
+                    'DoctorFirstName': firstName,
+                    'DoctorLastName': lastName,
+                    'PracticeName': practiceName,
+                    'DoctorEmail': email,
+                    'PatientFirstName': patientFirstName,
+                    'PatientLastName': patientLastName,
+                    'PatientPhoneNumber': patientPhone,
+                    'PatientEmailAddress': patientEmail,
+                    'RadiographsSent': radiographsSent,
+                    'Comments': comments
+                }
+            }),
+            success: function () {
+                $('#txtDoctorFirstName').val('');
+                $('#txtDoctorLastName').val('');
+                $('#txtPracticeName').val('');
+                $('#txtEmail').val('');
+                $('#txtPatientFirstName').val('');
+                $('#txtPatientLastName').val('');
+                $('#txtPatientPhone').val('');
+                $('#txtEmail').val('');
+                $("input:radio[name ='radiographs']").val('');
+                $('#txtComments').val('');
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    });
+
+
     $('#btnSaveAppointmentRequest').click(function () {
         var firstName = $('#txtFirstName').val();
         var lastName = $('#txtLastName').val();
@@ -53,7 +102,7 @@ $(document).ready(function (){
             }),
             success: function (data) {
                 //alert(data);
-                $('#txtLastName').val('');
+                $('#txtFirstName').val('');
                 $('#txtLastName').val('');
                 $('#txtDOB').val('');
                 $('#txtRespPartyFirstName').val('');
