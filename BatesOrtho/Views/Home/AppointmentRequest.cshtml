@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!-- UPDATED FORM BELOW
 
 <br />
 <br />
@@ -32,6 +33,156 @@
     Additional Comments: <input type="text" id="txtAdditionalComments" /><br />
     <button id="btnSaveAppointmentRequest">Save</button>
 </div>
+ -->
+
+
+
+<header class="sub-page-title">                         
+                <div class="container">
+                    <div class="row">                        
+                        <div class="col-md-6">
+                            
+                            <img src="images/application.jpg" class="img-responsive">                                                                                   
+                        </div>
+                        <div class="col-md-6 title-text">
+                            <h1>Schedule an Appiontment</h1>
+                            <p>Thank you for your interest in our services.  Please fill out the information below, and our scheduling coordinator will contact you to schedule an appointment time.  We look forward to seeing you soon.</p>
+                            <p>Please note this form is for requesting an appointment.  If you need to cancel or reschedule an existing appointment, or if you require immediate attention, please contact our practice directly.</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+            <section id="main-content">
+                
+                <div id="content" class="container">
+                    <div class="row">
+                        
+                        
+
+                        <div class="col-md-3 right-sidebar">
+                            <div id="sidebar" role="complementary">
+                                <ul class="list">
+                                    <li><strong>West End</strong></li>
+                                    <li>Monday - 10:30 - 6:30</li>
+                                    <li>​Tuesday - 8:30 - 4:30</li>
+                                    <li>Wednesday - 8:30 - 4:30</li>
+                                    <li class="contact"><strong>Mechanicsville​​</strong></li>
+                                    <li>Thursday - 8:30 - 4:30</li>                                 
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 right" role="main">                            
+
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="txtFirstName">Patient Name <span class="required"></span></label>
+                                    <label for="txtLastName" style="display:none;"></label>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtFirstName" placeholder="First Name" required>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" required>
+                                        </div>
+                                    </div>                              
+                                </div>
+                                <div class="form-group">
+                                  <label for="txtDOB">Patient Birthdate</label>
+                                  <div class="input-group date">                                    
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" class="form-control" id="txtDOB">
+                                  </div>
+                                </div>                          
+                                <div class="form-group">
+                                    <label for="txtRespPartyFirstName">Responsible Party Name <span class="required">*</span></label>
+                                    <label for="txtRespPartyLastName" style="display:none;"></label>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtRespPartyFirstName" placeholder="First Name" required>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="txtRespPartyLastName" placeholder="Last Name" required>
+                                        </div>
+                                    </div>                                                          
+                                </div>                          
+                                <div class="form-group">
+                                    <label for="ddlNewPatient">New Patient?</label>
+                                    <div class="form-group">                                  
+                                      <select id="ddlNewPatient" class="form-control">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">                                    
+                                    <label class="control-label" for="txtPhone">Phone number <span class="required">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                        <input type="text" class="form-control" id="txtPhone" placeholder="XXX-XXX-XXXX" required>     
+                                  </div>
+                                </div>
+                                <div class="form-group">                                    
+                                    <label for="txtEmail" class="control-label">Email <span class="required">*</span></label>  
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        <input type="text" class="form-control" id="txtEmail" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactType">Preferred mode of contact <span class="required">*</span></label>
+                                    <div class="form-group">                                  
+                                      <select id="contactType" class="form-control">
+                                        <option>Phone</option>
+                                        <option>Email</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Preferred Appointment Days</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="prefApptDays" value="Monday"> Monday (West End)
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="prefApptDays" value="Tuesday"> Tuesday (West End)
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="prefApptDays" value="Wednesday">Wednesday (West End)
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="prefApptDays" value="Thursday">Thursday (Mechanicsville)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="txtConvenientTimes">Convient Times</label>
+                                  <textarea class="form-control" rows="3" id="txtConvenientTimes"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="txtHowDidYouHear">How did you hear about our practice?</label>
+                                  <input type="text" class="form-control" id="txtHowDidYouHear">              
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="txtGeneralDentistName">Name of General Dentist</label>
+                                  <input type="text" class="form-control" id="txtGeneralDentistName">             
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="txtAdditionalComments">Additional Comments</label>
+                                  <textarea class="form-control" id="txtAdditionalComments" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-default" id="btnSaveAppointmentRequest">Submit</button>
+                            </form>
+                        </div>
+
+                    </div>  
+                </div><!-- /#content -->
+
+            </section><!-- /#main-content -->
+
 
 @section scripts 
 {
