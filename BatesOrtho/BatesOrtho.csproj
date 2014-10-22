@@ -251,6 +251,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BatesOrthoModels.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\batesorthodontics.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CRUD.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -308,6 +309,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
