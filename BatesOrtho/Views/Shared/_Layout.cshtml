@@ -11,6 +11,51 @@
     @*<script src='@Url.Content("~/Scripts/CRUD.js")' type="text/javascript"></script>*@
 </head>
 <body>
+    <div id="wrapper">
+            <header id="header">
+                <section id="top-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <p><span class="desktop">Call today to schedule</span><span class="mobile">Schedule</span> an appointment <span class="highlight-text">804-934-9292</span>
+                            </div>
+                            <div class="col-md-7 text-right">
+                                <p>
+                                    Get directions to our offices in <span class="highlight-text"><a href="#">Richmond</a> <small>&amp;</small> <a href="#">Mechanicsville</a></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <nav id="banner" class="navbar navbar-default" role="navigation">             
+                  <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="index.html">
+                        <img @*src='@Url.Content("~/Scripts/images/logo.png")'*@>
+                      </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="main-nav">
+                      <ul class="nav navbar-nav right">
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Patients", "Patients", "Home")</li>
+                        <li>@Html.ActionLink("Appointment Request", "AppointmentRequest", "Home")</li>
+                        <li><a href="#">Blog</a></li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </div>
+                </nav>          
+            </header><!-- /#header -->
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,14 +77,48 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        <p>@Html.ActionLink("Refer a Patient", "DoctorReferral", "Home")</p>
+    <div class="body-content">
+        @Html.ActionLink("Refer a Patient", "DoctorReferral", "Home")
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+
+
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div id="social" class="col-md-4">
+                            <h4>Bates Orthodontics</h4>
+                            <p>Sheldon A. Bates, DMD<br />
+                                (804)-934-9292</p>
+                            <ul class="clearfix">
+                                <li class="fb"><a href="https://www.facebook.com/BatesOrthodontics?sk=app_129982580378550" target="_blank"><img src="images/fb.png" width="100%"></a></li>
+                                <li class="tw"><a href="" target="_blank"><img src="images/tw.png" width="100%"></a></li>
+                                <li class="gplus"><a href="https://plus.google.com/+Bates-orthodontics/about" target="_blank"><img src="images/gp.png" width="100%"></a></li>
+                            </ul>
+                            
+                        </div>
+                        <div class="col-md-4 footer-map">
+                            <h4>Richmond/West End Office</h4>
+                            <p>3800 Stillman Pkwy, Suite 101<br />
+                                Richmond, VA 23233<br />
+                                (804)-934-9292</p>
+                            <a href="http://bit.ly/1usrjCP" target="_blank"><img src="images/map-rva.jpg" width="90%"></a>
+                        </div>
+                        <div class="col-md-4 footer-map">
+                            <h4>Mechanicsville Office</h4>
+                            <p>​4025 Mechanicsville Turnpike<br />Richmond, VA 23223<br />
+                            (804)-321-4958</p>
+                            <a href="http://bit.ly/1sZuOSE" target="_blank"><img src="images/map-midlo.jpg" width="90%"></a>
+                        </div>
+                        <div class="col-md-12">
+                            <small class="copy">Copyright © 2014 Bates Orthodontics</small>
+                        </div>
+                    </div>
+                </div>
+            </footer><!-- /#footer -->
+
+        </div>
+
+    </div><!-- /#wrapper -->
 
     @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
