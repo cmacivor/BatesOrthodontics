@@ -5,6 +5,23 @@
 
 $(document).ready(function (){
 
+    $('#btnSaveSponsorshipRequest').click(function () {
+        var date = $('#dateSponsorshipRequest').val();
+        var firstName = $('#txtFirstName').val();
+        var lastName = $('#txtLastName').val();
+        var phone = $('#txtPhone').val();
+        var address = $('#txtAddress').val();
+        var addressLine2 = $('#txtAddressLine2').val();
+        var city = $('#txtCity').val();
+        var state = $('#ddlState').val();
+        var zip = $('#txtZip').val();
+        var status = $('#txtPatientTreatmentStatus').val();
+        var organization = $('#txtOrganization').val();
+
+
+    });
+
+
     $('#btnSaveDoctorReferral').click(function () {
         var firstName = $('#txtDoctorFirstName').val();
         var lastName = $('#txtDoctorLastName').val();
