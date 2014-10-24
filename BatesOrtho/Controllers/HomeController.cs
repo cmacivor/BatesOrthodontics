@@ -30,6 +30,13 @@ namespace BatesOrtho.Controllers
             return View();
         }
 
+        public ActionResult Patients()
+        {
+            ViewBag.Message = "patients";
+
+            return View();
+        }
+
         public ActionResult AppointmentRequest()
         {
             ViewBag.Message = "appointment request";

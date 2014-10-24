@@ -37,6 +37,17 @@ $(document).ready(function(){
 		}
 	});
 
+	var pageTitle = $(".sub-page-title h1").text();	
+	
+	$('#main-nav a').filter(function() {
+	    var text = $(this).text();
+	    return text === pageTitle;
+	}).parent().addClass('active');		
+		//on link find h1 text equal to link and then add a class to this link
+
+		
+	
+
 });
 
 // Hide Header on on scroll down

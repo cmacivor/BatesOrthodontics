@@ -23,8 +23,16 @@ namespace BatesOrtho
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/components").Include(
+                      "~/Scripts/jquery.flexslider-min.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/global.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/normalize.css",
+                      "~/Content/flexslider.css",
+                      "~/Content/datepicker.css",                      
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
