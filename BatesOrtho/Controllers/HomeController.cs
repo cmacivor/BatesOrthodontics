@@ -42,6 +42,11 @@ namespace BatesOrtho.Controllers
             return View();
         }
 
+        public ActionResult SponsorshipRequest()
+        {
+            return View();
+        }
+
         [HttpPost]
         public JsonResult CreateDoctorReferral(DoctorReferral referral)
         {

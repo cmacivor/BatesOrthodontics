@@ -220,10 +220,35 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\flexslider.css" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\screen.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\about-appt.jpg" />
+    <Content Include="images\application.jpg" />
+    <Content Include="images\bates.jpg" />
+    <Content Include="images\bg_play_pause.png" />
+    <Content Include="images\fb.png" />
+    <Content Include="images\gp.png" />
+    <Content Include="images\hero\about.jpg" />
+    <Content Include="images\hero\about.png" />
+    <Content Include="images\hero\patients.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\map-midlo.jpg" />
+    <Content Include="images\map-rva.jpg" />
+    <Content Include="images\sample_blog_photo-post.jpg" />
+    <Content Include="images\serving.jpg" />
+    <Content Include="images\slides\img-1.jpg" />
+    <Content Include="images\slides\img-2.jpg" />
+    <Content Include="images\slides\img-3.jpg" />
+    <Content Include="images\slides\img-4.jpg" />
+    <Content Include="images\slides\logo-slide.png" />
+    <Content Include="images\tw.png" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="BatesOrtho.edmx">
@@ -254,6 +279,7 @@
     <None Include="Properties\PublishProfiles\batesorthodontics.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CRUD.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -298,6 +324,7 @@
     <Content Include="Views\Home\AppointmentRequest.cshtml" />
     <Content Include="Views\Home\Patients.cshtml" />
     <Content Include="Views\Home\DoctorReferral.cshtml" />
+    <Content Include="Views\SponsorshipRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
