@@ -17,8 +17,29 @@ $(document).ready(function (){
         var zip = $('#txtZip').val();
         var status = $('#txtPatientTreatmentStatus').val();
         var organization = $('#txtOrganization').val();
+        var checkpayableto = $('#txtCheckPayableTo').val();
 
-
+        $.ajax({
+            url: "/Home/CreateSponsorshipRequest",
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                request: {
+                    'Date': date,
+                    'FirstName': firstName,
+                    'LastName': lastName,
+                    'PhoneNumber': phone,
+                    'Address': address,
+                    'AddressLine2': address,
+                    'City': city,
+                    'State': state,
+                    'Zip': zip,
+                    'PatientTreatmentStatus': status,
+                    'Organization': organization,
+                    'CheckPayableTo': checkpayableto
+                }
+            })
+        });
     });
 
 

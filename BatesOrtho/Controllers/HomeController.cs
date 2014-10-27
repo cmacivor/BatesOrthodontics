@@ -55,6 +55,12 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
+        public JsonResult CreateSponsorshipRequest(SponsorshipRequest request)
+        {
+            return Json("OK");
+        }
+
+        [HttpPost]
         public JsonResult CreateDoctorReferral(DoctorReferral referral)
         {
             using (var ctx = new BatesOrthoEntities())
