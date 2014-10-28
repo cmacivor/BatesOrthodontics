@@ -6,6 +6,11 @@
 $(document).ready(function (){
 
     $('#btnSaveSponsorshipRequest').click(function () {
+
+        var checkedValues = $('input[name="typeOfAd"]:checked').map(function () {
+            return this.value;
+        }).get();
+
         var date = $('#dateSponsorshipRequest').val();
         var firstName = $('#txtFirstName').val();
         var lastName = $('#txtLastName').val();
@@ -18,6 +23,7 @@ $(document).ready(function (){
         var status = $('#txtPatientTreatmentStatus').val();
         var organization = $('#txtOrganization').val();
         var checkpayableto = $('#txtCheckPayableTo').val();
+        var comments = $('#txtComments').val();
 
         $.ajax({
             url: "/Home/CreateSponsorshipRequest",
@@ -36,9 +42,36 @@ $(document).ready(function (){
                     'Zip': zip,
                     'PatientTreatmentStatus': status,
                     'Organization': organization,
-                    'CheckPayableTo': checkpayableto
+                    'CheckPayableTo': checkpayableto,
+                    'Address': address,
+                    'AddressLine2': addressLine2,
+                    'City': city,
+                    'State': state,
+                    'Zip': zip,
+                    'Comments': comments
+                },
+                adTypes: {
+                    'adTypes': checkedValues
                 }
-            })
+            }),
+            success: function () {
+                $('#dateSponsorshipRequest').val('');
+                $('#txtFirstName').val('');
+                $('#txtLastName').val('');
+                $('#txtPhone').val('');
+                $('#txtAddress').val('');
+                $('#txtAddressLine2').val('');
+                $('#txtCity').val('');
+                $('#ddlState').val('');
+                $('#txtZip').val('');
+                $('#txtPatientTreatmentStatus').val('');
+                $('#txtOrganization').val('');
+                $('#txtCheckPayableTo').val('');
+                $('#txtComments').val('');
+            },
+            error: function (data) {
+                alert(data);
+            }
         });
     });
 

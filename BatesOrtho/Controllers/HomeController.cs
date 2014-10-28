@@ -9,6 +9,7 @@ namespace BatesOrtho.Controllers
 {
     public class HomeController : Controller
     {
+
         //private BatesOrthoEntities db = new BatesOrthoEntities();
 
         public ActionResult Index()
@@ -55,10 +56,11 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateSponsorshipRequest(SponsorshipRequest request)
+        public JsonResult CreateSponsorshipRequest(SponsorshipRequest request, string[] adTypes)
         {
             return Json("OK");
         }
+
 
         [HttpPost]
         public JsonResult CreateDoctorReferral(DoctorReferral referral)

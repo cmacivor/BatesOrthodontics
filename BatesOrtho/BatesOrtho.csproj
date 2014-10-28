@@ -211,6 +211,7 @@
     <Compile Include="SponsorshipRequest.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="SponsorshipRequestAds.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
