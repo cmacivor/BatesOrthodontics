@@ -92,7 +92,7 @@
     </div>*@
     <div class="body-content">
 
-        @*@Html.ActionLink("Sponsorship Request", "SponshorshipRequest", "Home")*@
+
         @RenderBody()
 
 
@@ -128,6 +128,9 @@
                         <div class="col-md-12">
                             <small class="copy">Copyright © 2014 Bates Orthodontics</small>
                         </div>
+                    </div>
+                    <div class="row">
+                        @Html.ActionLink("Sponsorship Request", "SponsorshipRequest", "Home")
                     </div>
                 </div>
             </footer><!-- /#footer -->

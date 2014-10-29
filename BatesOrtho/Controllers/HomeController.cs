@@ -56,8 +56,9 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateSponsorshipRequest(SponsorshipRequest request, string[] adTypes)
+        public JsonResult CreateSponsorshipRequest(Sponsorship request)
         {
+            
             return Json("OK");
         }
 

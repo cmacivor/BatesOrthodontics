@@ -6,11 +6,11 @@
 $(document).ready(function (){
 
     $('#btnSaveSponsorshipRequest').click(function () {
-
+        
         var checkedValues = $('input[name="typeOfAd"]:checked').map(function () {
             return this.value;
         }).get();
-
+        
         var date = $('#dateSponsorshipRequest').val();
         var firstName = $('#txtFirstName').val();
         var lastName = $('#txtLastName').val();
@@ -28,6 +28,7 @@ $(document).ready(function (){
         $.ajax({
             url: "/Home/CreateSponsorshipRequest",
             type: 'POST',
+            dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 request: {
@@ -36,7 +37,7 @@ $(document).ready(function (){
                     'LastName': lastName,
                     'PhoneNumber': phone,
                     'Address': address,
-                    'AddressLine2': address,
+                    'AddressLine2': addressLine2,
                     'City': city,
                     'State': state,
                     'Zip': zip,
@@ -48,11 +49,9 @@ $(document).ready(function (){
                     'City': city,
                     'State': state,
                     'Zip': zip,
-                    'Comments': comments
-                },
-                adTypes: {
-                    'adTypes': checkedValues
-                }
+                    'Comments': comments,
+                    'AdTypes': checkedValues
+                } 
             }),
             success: function () {
                 $('#dateSponsorshipRequest').val('');

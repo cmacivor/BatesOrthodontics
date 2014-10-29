@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "SponsorshipRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SponsorshipRequest</h2>
+Date: <input type="date" id="dateSponsorshipRequest" /><br />
+First Name: <input type="text" id="txtFirstName" /><br />
+Last Name: <input type="text" id="txtLastName" /><br />
+Phone: <input type="tel" id="txtPhone" />
+Address: <input type="text" id="txtAddress" />
+Address Line 2: <input type="text" id="txtAddressLine2" />
+City: <input type="text" id="txtCity" /><br />
+State: <select id="ddlState">
+            <option>Please Select</option>
+            <option>Virginia</option>
+       </select><br />
+Zip Code: <input type="text" id="txtZip" /><br />
+Patient Treatment Status: <input type="text" id="txtPatientTreatmentStatus" /><br />
+Organization: <input type="text" id="txtOrganization" /><br />
+Type of Ad: <input type="checkbox" name="typeOfAd" value="Program" />Program <br />
+            <input type="checkbox" name="typeOfAd" value="Sign" />Sign <br />
+            <input type="checkbox" name="typeOfAd" value="Other" />Other (Please Specify) <br />
+Other: <input type="text" id="txtOther" /><br />
+Size of Ad: <input type="text" id="txtSizeOfAd" /><br />
+Cost of Ad: <input type="number" id="txtCost" /><br />
+Due Date: <input type="text" id="txtDueDate" /><br />
+Artwork emailed to: <input type="email" id="txtArtworkEmail" /><br />
+Check Payable to: <input type="text" id="txtCheckPayableTo" /><br />
+Send Check/Ad to: 
+Address: <input type="text" id="txtSendCheckTo" /><br />
+Address Line 2: <input type="text" id="txtSendCheckAddressLine2" /><br />
+City: <input type="text" id="txtSendCheckCity" /><br />
+State: <select id="ddlSendCheckState">
+           <option>Please Select</option>
+           <option>Virginia</option>
+      </select><br />
+Zip: <input type="text" id="txtSendCheckZip" /><br />
+Comments: <input type="text" id="txtComments" />
+<button id="btnSaveSponsorshipRequest">Save</button>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>
+}

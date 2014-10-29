@@ -208,10 +208,10 @@
     <Compile Include="SponsershipRequestAdType.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sponsorship.cs" />
     <Compile Include="SponsorshipRequest.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="SponsorshipRequestAds.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -325,7 +325,7 @@
     <Content Include="Views\Home\AppointmentRequest.cshtml" />
     <Content Include="Views\Home\Patients.cshtml" />
     <Content Include="Views\Home\DoctorReferral.cshtml" />
-    <Content Include="Views\SponsorshipRequest.cshtml" />
+    <Content Include="Views\Home\SponsorshipRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
