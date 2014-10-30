@@ -7,7 +7,7 @@ body {
 }
 
 #wrapper{
-    max-width:1440px;
+    max-width:1280px;
     width:100%;
     height:100%;
     position:relative;
@@ -23,14 +23,15 @@ h1{
 }
 h2{
     color: #65b236;
-    font-weight: 400;
+    font-weight: 400;    
 }
 .sub h2{
     border-bottom:1px solid #ddd;
     padding-bottom:15px;
+    margin-top:.5em;
     margin-bottom: 30px;
     padding-top: 0px;
-    margin-top: 0;
+    
 }
 .bg-2 h3{
     color:#f89938;
@@ -418,6 +419,9 @@ ul.sidebar li a{
     min-width: 670px;
     margin: 0 auto;
 }
+.flexslider .slides .mobile-slide img{
+    width:230px;
+}
 .flexslider .mobile-slide,
 .flexslider .mobile-slide img{
     display: none;
@@ -670,7 +674,7 @@ form .open > .dropdown-toggle.btn-default {
 /* -------------- */
 /* -- Media Queries
 /* -------------- */
-@media (min-width: 1480px) {
+@media (min-width: 1320px) {
   #wrapper{  
     margin-top:3%;
     margin-bottom:3%;
@@ -844,9 +848,7 @@ form .open > .dropdown-toggle.btn-default {
         padding-left:0;
         padding-right:0;
     }
-    h1{
-        font-size: 1.5em;
-    }   
+    
     .flex-direction-nav .flex-next,
     .flex-direction-nav .flex-prev{
         display: none;
@@ -880,11 +882,14 @@ form .open > .dropdown-toggle.btn-default {
         padding-left:20px;
     }
     h1{
-        font-size:2.75em;
+        font-size:2.5em;
     }
 }
 
 @media (max-width: 480px) {
+    .flexslider .caption h1{
+        font-size: 1.3em;
+    }
     ul.gallery li{       
        width:100%;
     }

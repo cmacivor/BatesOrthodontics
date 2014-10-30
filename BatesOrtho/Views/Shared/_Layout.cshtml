@@ -26,11 +26,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-5">
-                                <p><span class="desktop">Call today to schedule</span><span class="mobile">Schedule</span> an appointment <span class="highlight-text">804-934-9292</span>
+                                <p><span class="desktop">Call today to schedule</span><span class="mobile">Schedule</span> an appointment <span class="highlight-text"><a href="tel:8049349292">804-934-9292</a></span>
                             </div>
                             <div class="col-md-7 text-right">
                                 <p>
-                                    Get directions to our offices in <span class="highlight-text"><a href="#">Richmond</a> <small>&amp;</small> <a href="#">Mechanicsville</a></span>
+                                    Get directions to our offices in <span class="highlight-text"><a href="https://www.google.com/maps/dir//3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233/@37.6401988,-77.5668509,17z/data=!4m13!1m4!3m3!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2s3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233!3b1!4m7!1m0!1m5!1m1!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2m2!1d-77.5668509!2d37.6401988" target="_blank">Richmond</a> <small>&amp;</small> <a href="https://www.google.com/maps/dir//Mechanicsville+Turnpike,+Richmond,+VA/@37.5724326,-77.3991067,17z/data=!4m13!1m4!3m3!1s0x89b117412446b4e7:0xdc8fb25d7506b482!2sMechanicsville+Turnpike,+Richmond,+VA!3b1!4m7!1m0!1m5!1m1!1s0x89b117412446b4e7:0xdc8fb25d7506b482!2m2!1d-77.3991067!2d37.5724326" target="_blank">Mechanicsville</a></span>
                                 </p>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                     <div class="collapse navbar-collapse" id="main-nav">
                       <ul class="nav navbar-nav right">
                         <li>@Html.ActionLink("About", "About")</li>
-                        <li>@Html.ActionLink("Patients", "Patients", "Home")</li>
+                        <li>@Html.ActionLink("New Patients", "Patients", "Home")</li>
                         <li>@Html.ActionLink("Appointments", "AppointmentRequest", "Home")</li>
                         <li><a href="#">Blog</a></li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -68,28 +68,7 @@
 
         <div class="body-content">
             <!--@Html.ActionLink("Refer a Patient", "DoctorReferral", "Home")-->
-            
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Appointment Request", "AppointmentRequest", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
+
     <div class="body-content">
 
 
@@ -111,17 +90,17 @@
                             
                         </div>
                         <div class="col-md-4 footer-map">
-                            <h4>Richmond/West End Office</h4>
+                            <h4>West End Office</h4>
                             <p>3800 Stillman Pkwy, Suite 101<br />
                                 Richmond, VA 23233<br />
                                 (804)-934-9292</p>
-                            <a href="http://bit.ly/1usrjCP" target="_blank"><img src="~/images/map-rva.jpg" width="90%"></a>
+                            <a href="https://www.google.com/maps/dir//3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233/@37.6401988,-77.5668509,17z/data=!4m13!1m4!3m3!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2s3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233!3b1!4m7!1m0!1m5!1m1!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2m2!1d-77.5668509!2d37.6401988" target="_blank"><img src="~/images/map-rva.jpg" width="90%"></a>
                         </div>
                         <div class="col-md-4 footer-map">
                             <h4>Mechanicsville Office</h4>
                             <p>​4025 Mechanicsville Turnpike<br />Richmond, VA 23223<br />
                             (804)-321-4958</p>
-                            <a href="http://bit.ly/1sZuOSE" target="_blank"><img src="~/images/map-midlo.jpg" width="90%"></a>
+                            <a href="https://www.google.com/maps/dir//Mechanicsville+Turnpike,+Richmond,+VA/@37.5724326,-77.3991067,17z/data=!4m13!1m4!3m3!1s0x89b117412446b4e7:0xdc8fb25d7506b482!2sMechanicsville+Turnpike,+Richmond,+VA!3b1!4m7!1m0!1m5!1m1!1s0x89b117412446b4e7:0xdc8fb25d7506b482!2m2!1d-77.3991067!2d37.5724326" target="_blank"><img src="~/images/map-midlo.jpg" width="90%"></a>
                         </div>                        
                     </div>
                     <div class="row">

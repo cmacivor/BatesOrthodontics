@@ -5,11 +5,11 @@ $(document).ready(function(){
 	
 		
 	if ($(window).width() > 768) {
-		$( ".slides li:nth-child(1)" ).remove();
+		$( ".slides li.mobile-slide" ).remove();
 	}
 	$(window).resize(function() {
 		if ($(window).width() > 768) {
-			$( ".slides li:nth-child(1)" ).remove();
+			$( ".slides li.mobile-slide" ).remove();
 		}
 	});
 	
