@@ -56,7 +56,7 @@
                         <li>@Html.ActionLink("About", "About")</li>
                         <li>@Html.ActionLink("New Patients", "Patients", "Home")</li>
                         <li>@Html.ActionLink("Appointments", "AppointmentRequest", "Home")</li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="http://blog.bates-orthodontics.com/">Blog</a></li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                       </ul>
                     </div><!-- /.navbar-collapse -->
@@ -133,6 +133,10 @@
             $('.flexslider').flexslider({
                 controlNav: false,
             });
+        });
+
+        $(function () {
+            $('#myTab a:first').tab('show')
         });
 
         $('.collapse').collapse('toggle');

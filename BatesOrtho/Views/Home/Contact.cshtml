@@ -1,17 +1,86 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+
+            <header class="sub-page-title">                         
+                <div class="container">
+                    <div class="row">                        
+                        <div class="col-md-6">
+                            
+                            <img src="~/images/application.jpg" class="img-responsive">                                                                                   
+                        </div>
+                        <div class="col-md-6 title-text">
+                            <h1>Contact</h1>
+                            <p>Thank you for your interest in our services.  Please fill out the information below, and our scheduling coordinator will contact you to schedule an appointment time.  We look forward to seeing you soon.</p>
+                            <p>Please note this form is for requesting an appointment.  If you need to cancel or reschedule an existing appointment, or if you require immediate attention, please contact our practice directly.</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+            <section id="main-content" class="sub">
+                
+                <div id="content" class="container">
+                    <div class="row">
+                        
+                        
+
+                        <div class="col-md-3 right-sidebar">
+                            <div id="sidebar" role="complementary">
+                                <ul class="list">
+                                    <li><strong><a href="https://www.google.com/maps/dir//3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233/&#64;37.6401988,-77.5668509,17z/data=!4m13!1m4!3m3!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2s3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233!3b1!4m7!1m0!1m5!1m1!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2m2!1d-77.5668509!2d37.6401988" target="_blank">West End</a></strong></li>
+                                    <li>Monday - 10:30 - 6:30</li>
+                                    <li>​Tuesday - 8:30 - 4:30</li>
+                                    <li>Wednesday - 8:30 - 4:30</li>
+                                    <li class="contact"><strong><a href="https://www.google.com/maps/dir//4025+Mechanicsville+Turnpike,+Richmond,+VA+23223/&#64;37.5797219,-77.393072,17z/data=!4m13!1m4!3m3!1s0x89b1176926ab959f:0x209df1c8627f91a3!2s4025+Mechanicsville+Turnpike,+Richmond,+VA+23223!3b1!4m7!1m0!1m5!1m1!1s0x89b1176926ab959f:0x209df1c8627f91a3!2m2!1d-77.393072!2d37.5797219" target="_blank">Mechanicsville​​</a></strong></li>
+                                    <li>Thursday - 8:30 - 4:30</li>                                 
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 right" role="main">                            
+                            <h2>Have anymore questions? Contact Us.</h2>
+                            <form role="form" id="contact-us">
+                                <div class="form-group">
+                                    <label for="firstName">First Name <span class="required">*</span></label>
+                                    <label for="lastName" style="display:none;"></label>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                        </div>
+                                    </div>                              
+                                </div>
+                                <div class="form-group">                                    
+                                    <label for="email" class="control-label">Email <span class="required">*</span></label>  
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        <input type="text" class="form-control" id="txtEmail" placeholder="Email" required>
+                                    </div>
+                                </div>                                
+                                <div class="form-group">
+                                  <label class="control-label" for="message">Message</label>
+                                  <textarea class="form-control" rows="3" id="message"></textarea>
+                                </div>                                
+                                <button type="submit" class="btn btn-default" id="btnSaveAppointmentRequest">Se d</button>
+                            </form>
+                             
+                        </div>
+
+                    </div>  
+                </div><!-- /#content -->
+
+            </section><!-- /#main-content -->
+
+
+@section scripts 
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>
+}
