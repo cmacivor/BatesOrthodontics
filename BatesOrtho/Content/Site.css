@@ -471,24 +471,47 @@ ul.sidebar li a{
     padding-right: 0px;
 }
 label{
-    font-size: .7em;
+    font-size: .8em;
     color: #939393;
     font-weight:400;
     display:block;
     padding-top:15px;
 }
 .checkbox{
-    margin-bottom:25px;
+    margin-bottom:15px;
+    padding-top:0;
+    margin-top: -10px;
 }
 .checkbox label{
     color:#666;
     display: block;
+    font-size:.65em;
 }
+
 input,
 select,
 textarea {
     max-width: 455px;
     margin-bottom:5px;
+}
+textarea.form-control{
+    max-width: 495px;
+}
+.form-group .label{
+    display: block;
+    color: #333;
+    padding: 40px 0 0;
+    text-align: left;
+    margin-bottom: 0
+}
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: -15px;
+    margin-right: 5px;
+}
+.required{
+    color:red !important;
 }
 
 .field-validation-error {

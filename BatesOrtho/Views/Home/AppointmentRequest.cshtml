@@ -65,118 +65,197 @@
                         <div class="col-md-3 right-sidebar">
                             <div id="sidebar" role="complementary">
                                 <ul class="list">
-                                    <li><strong>West End</strong></li>
+                                    <li><strong><a href="https://www.google.com/maps/dir//3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233/&#64;37.6401988,-77.5668509,17z/data=!4m13!1m4!3m3!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2s3800+Stillman+Pkwy+%23101,+Richmond,+VA+23233!3b1!4m7!1m0!1m5!1m1!1s0x89b16ab419c2f4c9:0xbac476ab40a473d1!2m2!1d-77.5668509!2d37.6401988" target="_blank">West End</a></strong></li>
                                     <li>Monday - 10:30 - 6:30</li>
                                     <li>​Tuesday - 8:30 - 4:30</li>
                                     <li>Wednesday - 8:30 - 4:30</li>
-                                    <li class="contact"><strong>Mechanicsville​​</strong></li>
+                                    <li class="contact"><strong><a href="https://www.google.com/maps/dir//4025+Mechanicsville+Turnpike,+Richmond,+VA+23223/&#64;37.5797219,-77.393072,17z/data=!4m13!1m4!3m3!1s0x89b1176926ab959f:0x209df1c8627f91a3!2s4025+Mechanicsville+Turnpike,+Richmond,+VA+23223!3b1!4m7!1m0!1m5!1m1!1s0x89b1176926ab959f:0x209df1c8627f91a3!2m2!1d-77.393072!2d37.5797219" target="_blank">Mechanicsville​​</a></strong></li>
                                     <li>Thursday - 8:30 - 4:30</li>                                 
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="col-md-9 right" role="main">                            
-                            <h2>Schedule an appointment
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="txtFirstName">Patient Name <span class="required"></span></label>
-                                    <label for="txtLastName" style="display:none;"></label>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="txtFirstName" placeholder="First Name" required>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" required>
-                                        </div>
-                                    </div>                              
-                                </div>
-                                <div class="form-group">
-                                  <label for="txtDOB">Patient Birthdate</label>
-                                  <div class="input-group date">                                    
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" class="form-control" id="txtDOB">
-                                  </div>
-                                </div>                          
-                                <div class="form-group">
-                                    <label for="txtRespPartyFirstName">Responsible Party Name <span class="required">*</span></label>
-                                    <label for="txtRespPartyLastName" style="display:none;"></label>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="txtRespPartyFirstName" placeholder="First Name" required>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="txtRespPartyLastName" placeholder="Last Name" required>
-                                        </div>
-                                    </div>                                                          
-                                </div>                          
-                                <div class="form-group">
-                                    <label for="ddlNewPatient">New Patient?</label>
-                                    <div class="form-group">                                  
-                                      <select id="ddlNewPatient" class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                      </select>
+                        <div class="col-md-9 right" role="main">
+                            <ul class="nav nav-tabs" role="tablist" id="myTab">
+                              <li role="presentation" class="active"><a href="#appt" role="tab" data-toggle="tab">Schedule an appointment</a></li>
+                              <li role="presentation"><a href="#refer" role="tab" data-toggle="tab">Refer a Patient</a></li>                          
+                            </ul>
+                            <div class="tab-content">
+                              <div role="tabpanel" class="tab-pane active" id="appt">
+                                <form role="form" id="patient-appt">
+                                    <div class="form-group">
+                                        <label for="txtFirstName">Patient Name <span class="required">*</span></label>
+                                        <label for="txtLastName" style="display:none;"></label>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="txtFirstName" placeholder="First Name" required>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" required>
+                                            </div>
+                                        </div>                              
                                     </div>
-                                </div>
-                                <div class="form-group">                                    
-                                    <label class="control-label" for="txtPhone">Phone number <span class="required">*</span></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control" id="txtPhone" placeholder="XXX-XXX-XXXX" required>     
-                                  </div>
-                                </div>
-                                <div class="form-group">                                    
-                                    <label for="txtEmail" class="control-label">Email <span class="required">*</span></label>  
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                        <input type="text" class="form-control" id="txtEmail" placeholder="Email" required>
+                                    <div class="form-group">
+                                      <label for="txtDOB">Patient Birthdate</label>
+                                      <div class="input-group date">                                    
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control" id="txtDOB">
+                                      </div>
+                                    </div>                          
+                                    <div class="form-group">
+                                        <label for="txtRespPartyFirstName">Responsible Party Name <span class="required">*</span></label>
+                                        <label for="txtRespPartyLastName" style="display:none;"></label>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="txtRespPartyFirstName" placeholder="First Name" required>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtRespPartyLastName" placeholder="Last Name" required>
+                                            </div>
+                                        </div>                                                          
+                                    </div>                          
+                                    <div class="form-group">
+                                        <label for="ddlNewPatient">New Patient?</label>
+                                        <div class="form-group">                                  
+                                          <select id="ddlNewPatient" class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                          </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contactType">Preferred mode of contact <span class="required">*</span></label>
-                                    <div class="form-group">                                  
-                                      <select id="contactType" class="form-control">
-                                        <option>Phone</option>
-                                        <option>Email</option>
-                                      </select>
+                                    <div class="form-group">                                    
+                                        <label class="control-label" for="txtPhone">Phone number <span class="required">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                            <input type="text" class="form-control" id="txtPhone" placeholder="XXX-XXX-XXXX" required>     
+                                      </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Preferred Appointment Days</label>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="prefApptDays" value="Monday"> Monday (West End)
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="prefApptDays" value="Tuesday"> Tuesday (West End)
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="prefApptDays" value="Wednesday">Wednesday (West End)
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="prefApptDays" value="Thursday">Thursday (Mechanicsville)
-                                        </label>
+                                    <div class="form-group">                                    
+                                        <label for="txtEmail" class="control-label">Email <span class="required">*</span></label>  
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            <input type="text" class="form-control" id="txtEmail" placeholder="Email" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                  <label class="control-label" for="txtConvenientTimes">Convient Times</label>
-                                  <textarea class="form-control" rows="3" id="txtConvenientTimes"></textarea>
-                                </div>
-                                <div class="form-group">
-                                  <label class="control-label" for="txtHowDidYouHear">How did you hear about our practice?</label>
-                                  <input type="text" class="form-control" id="txtHowDidYouHear">              
-                                </div>
-                                <div class="form-group">
-                                  <label class="control-label" for="txtGeneralDentistName">Name of General Dentist</label>
-                                  <input type="text" class="form-control" id="txtGeneralDentistName">             
-                                </div>
-                                <div class="form-group">
-                                  <label class="control-label" for="txtAdditionalComments">Additional Comments</label>
-                                  <textarea class="form-control" id="txtAdditionalComments" rows="3"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-default" id="btnSaveAppointmentRequest">Submit</button>
-                            </form>
-                            @Html.ActionLink("Refer a Patient", "DoctorReferral", "Home")
+                                    <div class="form-group">
+                                        <label for="contactType">Preferred mode of contact <span class="required">*</span></label>
+                                        <div class="form-group">                                  
+                                          <select id="contactType" class="form-control">
+                                            <option>Phone</option>
+                                            <option>Email</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Preferred Appointment Days</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="prefApptDays" value="Monday"> Monday (West End)
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="prefApptDays" value="Tuesday"> Tuesday (West End)
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="prefApptDays" value="Wednesday">Wednesday (West End)
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="prefApptDays" value="Thursday">Thursday (Mechanicsville)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="control-label" for="txtConvenientTimes">Convient Times</label>
+                                      <textarea class="form-control" rows="3" id="txtConvenientTimes"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="control-label" for="txtHowDidYouHear">How did you hear about our practice?</label>
+                                      <input type="text" class="form-control" id="txtHowDidYouHear">              
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="control-label" for="txtGeneralDentistName">Name of General Dentist</label>
+                                      <input type="text" class="form-control" id="txtGeneralDentistName">             
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="control-label" for="txtAdditionalComments">Additional Comments</label>
+                                      <textarea class="form-control" id="txtAdditionalComments" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-default" id="btnSaveAppointmentRequest">Submit</button>
+                                </form>
+                              </div>
+                              <div role="tabpanel" class="tab-pane" id="refer">
+                                <form role="form" id="patient-refer">
+                                    <div class="form-group">
+                                        <label for="txtDoctorFirstName">Doctor Name<span class="required">*</span></label>
+                                        <label for="txtDoctorLastName" style="display:none;"></label>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="txtDoctorFirstName" placeholder="First Name" required>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtDoctorLastName" placeholder="Last Name" required>
+                                            </div>
+                                        </div>                              
+                                    </div>
+                                    <div class="form-group">                                    
+                                        <label for="txtPracticeName" class="control-label">Practice Name <span class="required">*</span></label><input type="text" class="form-control" id="txtPracticeName" required>
+                                    </div>
+                                    <div class="form-group">                                    
+                                        <label for="txtEmail" class="control-label">Email <span class="required">*</span></label>  
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            <input type="text" class="form-control" id="txtEmail" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="label">Referral Information</p>
+                                        <label for="txtPatientFirstName">Name of the patient you are referring <span class="required">*</span>
+                                        <label for="txtPatientLastName" style="display:none;"></label>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="txtPatientFirstName" placeholder="First Name" required>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtPatientLastName" placeholder="Last Name" required>
+                                            </div>
+                                        </div>                              
+                                    </div>
+                                    <div class="form-group">                                    
+                                        <label class="control-label" for="txtPatientPhone">Patient's Phone <span class="required">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                            <input type="text" class="form-control" id="txtPatientPhone" placeholder="XXX-XXX-XXXX" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">                                    
+                                        <label for="txtPatientEmail" class="control-label">Patient's Email <span class="required">*</span></label>  
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            <input type="text" class="form-control" id="txtPatientEmail" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Radiographs sent</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="radio" name="radiograph" value="Yes" /> Yes
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="radiograph" value="No" /> No
+                                            </label>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="control-label" for="txtComments">Comments</label>
+                                      <textarea class="form-control" id="txtComments" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-default" id="btnSaveDoctorReferral">Save Referral</button>
+                                </form>
+
+                              </div>
+                            </div>                            
+                            
+                            
+                            <!-- @Html.ActionLink("Refer a Patient", "DoctorReferral", "Home") -->
                         </div>
 
                     </div>  

@@ -45,7 +45,25 @@ $(document).ready(function(){
 	}).parent().addClass('active');		
 		//on link find h1 text equal to link and then add a class to this link
 
-		
+	$("#patient-appt").validate({	  
+	  rules:{
+	  	required: true, 
+	  	prefApptDays: {
+              required: true,
+              minlength: 1
+          }
+	  }	  
+	});	
+	
+	$("#patient-refer").validate({	  
+	  rules:{
+	  	required: true, 
+	  	radiograph: {
+              required: true,
+              minlength: 1
+          }
+	  }	  
+	});	
 	
 
 });
