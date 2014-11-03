@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -155,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AppointmentReq.cs" />
     <Compile Include="AppointmentRequest.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
     </Compile>
@@ -277,6 +281,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BatesOrthoModels.cs</LastGenOutput>
     </Content>
+    <Content Include="EmailTemplates\AppointmentRequestEmail.cshtml" />
     <None Include="Properties\PublishProfiles\batesorthodontics.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CRUD.js" />

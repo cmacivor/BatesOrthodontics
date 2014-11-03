@@ -165,7 +165,8 @@ $(document).ready(function (){
                     'ConvenientTimes': convenientTimes,
                     'HowDidYouHear': howDidYouHear,
                     'GeneralDentistName': dentistName,
-                    'AdditionalComments': comments
+                    'AdditionalComments': comments,
+                    'PreferredDays': checkedValues
                 }
                 //preferredDays: { 'AppointmentRequestDay': checkedValues }
 
@@ -187,23 +188,24 @@ $(document).ready(function (){
                 //$(this).closest('form').find("input[type=text], textarea").val("");
             },
             error: function (data) {
-                alert(data);
+                //alert(data);
+                console.log(data);
             }
         });
 
         //now insert the preferred times into the PreferredAppointmentDay table
-        $.ajax({
-            url: "/Home/CreatePreferredAppointmentDay",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(checkedValues),
-            success: function (data) {
-                alert('success');
-            },
-            error: function (data) {
-                alert(data);
-            }
-        });
+        //$.ajax({
+        //    url: "/Home/CreatePreferredAppointmentDay",
+        //    type: "POST",
+        //    contentType: 'application/json; charset=utf-8',
+        //    data: JSON.stringify(checkedValues),
+        //    success: function (data) {
+        //        alert('success');
+        //    },
+        //    error: function (data) {
+        //        alert(data);
+        //    }
+        //});
 
     });
 });

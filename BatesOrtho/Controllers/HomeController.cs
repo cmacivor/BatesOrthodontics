@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BatesOrtho.Models;
+using System.IO;
+using RazorEngine;
 
 namespace BatesOrtho.Controllers
 {
@@ -75,14 +77,24 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateAppointmentRequest(AppointmentRequest apptRequest)
+        public JsonResult CreateAppointmentRequest(AppointmentReq apptRequest)
         {
-           
-            using (var ctx = new BatesOrthoEntities())
-            {
-                ctx.AppointmentRequests.Add(apptRequest);
-                ctx.SaveChanges();
-            }
+           if (apptRequest != null)
+           {
+               //var template = new RazorEngine.Templating.TemplateService();
+              // var emailBody = template.Parse(System.IO.File.ReadAllText("~/EmailTemplates/AppointmentRequestEmail.cshtml"), apptRequest, null, null);
+               //string path = @"C:\Users\Craig\Documents\Visual Studio 2013\Projects\BatesOrtho\BatesOrtho\EmailTemplates";
+               string path = Server.MapPath("~/EmailTemplates/AppointmentRequestEmail.cshtml");
+               string template = System.IO.File.OpenText(path).ReadToEnd();
+               string message = Razor.Parse(template, apptRequest);
+           }
+
+
+            //using (var ctx = new BatesOrthoEntities())
+            //{
+                //ctx.AppointmentRequests.Add(apptRequest);
+                //ctx.SaveChanges();
+            //}
             return Json("OK");
         }
 
