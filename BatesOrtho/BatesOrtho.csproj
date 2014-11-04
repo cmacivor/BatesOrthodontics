@@ -212,7 +212,7 @@
     <Compile Include="SponsershipRequestAdType.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sponsorship.cs" />
+    <Compile Include="Models\Sponsorship.cs" />
     <Compile Include="SponsorshipRequest.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
     </Compile>
@@ -282,6 +282,7 @@
       <LastGenOutput>BatesOrthoModels.cs</LastGenOutput>
     </Content>
     <Content Include="EmailTemplates\AppointmentRequestEmail.cshtml" />
+    <Content Include="EmailTemplates\SponsorshipRequestEmail.cshtml" />
     <None Include="Properties\PublishProfiles\batesorthodontics.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CRUD.js" />

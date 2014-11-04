@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+@using BatesOrtho.Models
+@Model BatesOrtho.Models.AppointmentReq
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>Date: @Model.Date</p>
+        <p>First Name: @Model.FirstName</p>
+        <p>Last Name: @Model.LastName</p>
+        <p>Phone Number: @Model.PhoneNumber</p>
+        <p>Address: @Model.PhoneNumber</p>
+        <p>Address Line 2: @Model.AddressLine2</p>
+        <p>City: @Model.City</p>
+        <p>State: @Model.State</p>
+        <p>Zip: @Model.Zip</p>
+        <p>Patient Treatment Status: @Model.PatientTreatmentStatus</p>
+        <p>Organization: @Model.Organization</p>
+        <p>Check Payable To: @Model.CheckPayableTo</p>
+        <p>Send Check To Address: @Model.SendCheckToAddress</p>
+        <p>Send Check To Address2: @Model.SendCheckToAddress2</p>
+        <p>Send Check To City: @Model.SendCheckToCity</p>
+        <p>Send Check To State: @Model.SendCheckToState</p>
+        <p>Send Check To Zip: @Model.SendCheckToZip</p>
+        <p>Comments: @Model.Comments</p>
+    </div>
+</body>
+</html>

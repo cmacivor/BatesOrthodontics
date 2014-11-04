@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using BatesOrtho.Models;
 using System.IO;
 using RazorEngine;
+using System.Configuration;
+using System.Net.Mail;
+using System.Net;
 
 namespace BatesOrtho.Controllers
 {
@@ -87,6 +90,20 @@ namespace BatesOrtho.Controllers
                string path = Server.MapPath("~/EmailTemplates/AppointmentRequestEmail.cshtml");
                string template = System.IO.File.OpenText(path).ReadToEnd();
                string message = Razor.Parse(template, apptRequest);
+
+               SendMail mailUtil = new SendMail();
+               //MailMessage mailMessage = new MailMessage();
+               //mailMessage.To.Add(mailUtil.FromEmail);
+               //mailMessage.Subject = "New Appointment Request";
+               //mailMessage.Body = message;
+               var client = new SmtpClient("smtp.gmail.com", 587)
+               {
+                   UseDefaultCredentials = false,
+                   Credentials = new NetworkCredential("cmacivor82@gmail.com", "Caesar2810$"),
+                   EnableSsl = true
+               };
+               client.Send("cmacivor82@gmail.com", "cmacivor82@gmail.com", "test", message);
+               //client.Send(mailMessage);
            }
 
 
@@ -122,5 +139,24 @@ namespace BatesOrtho.Controllers
         }
 
 
+    }
+
+    public class SendMail
+    {
+        private string fromEmail = System.Configuration.ConfigurationManager.AppSettings["FromAddress"];
+        private string toEmail = System.Configuration.ConfigurationManager.AppSettings["ToAddress"];
+
+
+        public string FromEmail
+        {
+            get { return fromEmail; }
+        }
+        
+        public string ToEmail
+        {
+            get { return toEmail; }
+        }
+
+        public string Subject { get; set; }
     }
 }
