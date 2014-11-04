@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+@using BatesOrtho.Models
+@Model BatesOrtho.Models.DoctorRef
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+     <p>Doctor First Name:  @Model.DoctorFirstName</p>
+     <p>Doctor Last Name: @Model.DoctorLastName</p>
+     <p>Practice Name: @Model.PracticeName</p>
+     <p>Doctor Email: @Model.DoctorEmail</p>
+     <p>Patient First Name: @Model.PatientFirstName</p>
+     <p>Patient Last Name: @Model.PatientLastName</p>
+     <p>Patient Phone Number: @Model.PatientPhoneNumber</p>
+     <p>Patient Email Address: @Model.PatientEmailAddress</p>
+     <p>Radiographs Sent: @Model.RadiographsSent</p>
+     <p>Comments: @Model.Comments</p>
+    </div>
+</body>
+</html>

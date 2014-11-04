@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+@using BatesOrtho.Models
+@Model BatesOrtho.Models.ContactEmail
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>First Name: @Model.FirstName</p>
+        <p>Last Name: @Model.LastName</p>
+        <p>Email: @Model.Email</p>
+        <p>Message: @Model.Message</p>
+    </div>
+</body>
+</html>

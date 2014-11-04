@@ -204,6 +204,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\DoctorRef.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="PreferredAppointmentDay.cs">
       <DependentUpon>BatesOrthoModels.tt</DependentUpon>
@@ -283,6 +285,8 @@
     </Content>
     <Content Include="EmailTemplates\AppointmentRequestEmail.cshtml" />
     <Content Include="EmailTemplates\SponsorshipRequestEmail.cshtml" />
+    <Content Include="EmailTemplates\DoctorReferralEmail.cshtml" />
+    <Content Include="EmailTemplates\ContactEmail.cshtml" />
     <None Include="Properties\PublishProfiles\batesorthodontics.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CRUD.js" />

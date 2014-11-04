@@ -69,13 +69,19 @@ namespace BatesOrtho.Controllers
 
 
         [HttpPost]
-        public JsonResult CreateDoctorReferral(DoctorReferral referral)
+        public JsonResult CreateDoctorReferral(DoctorRef referral)
         {
-            using (var ctx = new BatesOrthoEntities())
-            {
-               ctx.DoctorReferrals.Add(referral);
-               ctx.SaveChanges();
-            }
+            //using (var ctx = new BatesOrthoEntities())
+            //{
+            //   ctx.DoctorReferrals.Add(referral);
+            //   ctx.SaveChanges();
+            //}
+            return Json("OK");
+        }
+
+        [HttpPost]
+        public JsonResult CreateContactRequest(Contact request)
+        {
             return Json("OK");
         }
 
