@@ -86,12 +86,11 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
-        public JavaScriptResult CreateContactRequest(Contact request)
+        public ActionResult CreateContactRequest(Contact request)
         {
 
-            //return View("ThankYou");
-            //return RedirectToAction("ThankYou");
-            return JavaScript("window.location = '/Home/ThankYou'");
+            
+            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 
         [HttpPost]
