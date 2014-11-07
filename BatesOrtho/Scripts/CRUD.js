@@ -5,37 +5,7 @@
 
 $(document).ready(function (){
 
-    $('#btnSaveContactRequest').click(function () {
-        
-        var firstName = $('#firstName').val();
-        var lastName = $('#lastName').val();
-        var email = $('#txtEmail').val();
-        var message = $('#message').val();
-    
-        $.ajax({
-            url: "/Home/CreateContactRequest",
-            type: 'POST',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({
-                request: {
-                    'FirstName': firstName,
-                    'LastName': lastName,
-                    'Email': email,
-                    'Message': message
-                }
-            }),
-            success: function () {
-                $('#firstName').val('');
-                $('#lastName').val('');
-                $('#txtEmail').val('');
-                $('#message').val('');
-            },
-            error: function (data) {
-                alert(data);
-            }
-        })
-    });
+
 
     $('#btnSaveSponsorshipRequest').click(function () {
         

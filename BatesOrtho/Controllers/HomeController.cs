@@ -51,6 +51,11 @@ namespace BatesOrtho.Controllers
             return View();
         }
 
+        public ActionResult ThankYou()
+        {
+            return View("ThankYou");
+        }
+
         public ActionResult DoctorReferral()
         {
             return View();
@@ -81,9 +86,12 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateContactRequest(Contact request)
+        public JavaScriptResult CreateContactRequest(Contact request)
         {
-            return Json("OK");
+
+            //return View("ThankYou");
+            //return RedirectToAction("ThankYou");
+            return JavaScript("window.location = '/Home/ThankYou'");
         }
 
         [HttpPost]
