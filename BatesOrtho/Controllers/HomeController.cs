@@ -9,6 +9,7 @@ using RazorEngine;
 using System.Configuration;
 using System.Net.Mail;
 using System.Net;
+using BatesOrtho;
 
 namespace BatesOrtho.Controllers
 {
@@ -96,73 +97,47 @@ namespace BatesOrtho.Controllers
                string path = Server.MapPath("~/EmailTemplates/AppointmentRequestEmail.cshtml");
                string template = System.IO.File.OpenText(path).ReadToEnd();
                string message = Razor.Parse(template, apptRequest);
+               
+               SendGmail.GmailUsername = "cmacivor82@gmail.com";
+               SendGmail.GmailPassword = "Caesar2810$";
 
-               SendMail mailUtil = new SendMail();
-               //MailMessage mailMessage = new MailMessage();
-               //mailMessage.To.Add(mailUtil.FromEmail);
-               //mailMessage.Subject = "New Appointment Request";
-               //mailMessage.Body = message;
-               var client = new SmtpClient("smtp.gmail.com", 587)
-               {
-                   UseDefaultCredentials = false,
-                   Credentials = new NetworkCredential("cmacivor82@gmail.com", "Caesar2810$"),
-                   EnableSsl = true
-               };
-               client.Send("cmacivor82@gmail.com", "cmacivor82@gmail.com", "test", message);
-               //client.Send(mailMessage);
+               SendGmail mailer = new SendGmail();
+               mailer.ToEmail = "cmacivor82@gmail.com";
+               mailer.Subject = "Verify your email id";
+               //mailer.Body = "Thanks for Registering your account.<br> please verify your email id by clicking the link <br> <a href='youraccount.com/verifycode=12323232'>verify</a>";
+               mailer.Body = message;
+               mailer.IsHtml = true;
+               mailer.Send();
            }
 
-
-            //using (var ctx = new BatesOrthoEntities())
-            //{
-                //ctx.AppointmentRequests.Add(apptRequest);
-                //ctx.SaveChanges();
-            //}
             return Json("OK");
         }
 
-        [HttpPost]
-        public JsonResult CreatePreferredAppointmentDay(string[] checkedValues)
-        {
-            using (var ctx = new BatesOrthoEntities())
-            {
-                var justEntered = (from a in ctx.AppointmentRequests
-                                   orderby a.AppointmentRequestID descending
-                                   select a).FirstOrDefault();
+        //[HttpPost]
+        //public JsonResult CreatePreferredAppointmentDay(string[] checkedValues)
+        //{
+        //    using (var ctx = new BatesOrthoEntities())
+        //    {
+        //        var justEntered = (from a in ctx.AppointmentRequests
+        //                           orderby a.AppointmentRequestID descending
+        //                           select a).FirstOrDefault();
 
-                foreach (var day in checkedValues)
-                {
-                    PreferredAppointmentDay preferredDay = new PreferredAppointmentDay();
-                    preferredDay.AppointmentRequestDay = day;
-                    preferredDay.AppointmentRequestID = justEntered.AppointmentRequestID;
-                    ctx.PreferredAppointmentDays.Add(preferredDay);
+        //        foreach (var day in checkedValues)
+        //        {
+        //            PreferredAppointmentDay preferredDay = new PreferredAppointmentDay();
+        //            preferredDay.AppointmentRequestDay = day;
+        //            preferredDay.AppointmentRequestID = justEntered.AppointmentRequestID;
+        //            ctx.PreferredAppointmentDays.Add(preferredDay);
                     
-                }
-                ctx.SaveChanges();
-            }
+        //        }
+        //        ctx.SaveChanges();
+        //    }
 
-            return Json("OK");
-        }
+        //    return Json("OK");
+        //}
 
 
     }
 
-    public class SendMail
-    {
-        private string fromEmail = System.Configuration.ConfigurationManager.AppSettings["FromAddress"];
-        private string toEmail = System.Configuration.ConfigurationManager.AppSettings["ToAddress"];
-
-
-        public string FromEmail
-        {
-            get { return fromEmail; }
-        }
-        
-        public string ToEmail
-        {
-            get { return toEmail; }
-        }
-
-        public string Subject { get; set; }
-    }
+   
 }

@@ -225,20 +225,6 @@ $(document).ready(function (){
             }
         });
 
-        //now insert the preferred times into the PreferredAppointmentDay table
-        //$.ajax({
-        //    url: "/Home/CreatePreferredAppointmentDay",
-        //    type: "POST",
-        //    contentType: 'application/json; charset=utf-8',
-        //    data: JSON.stringify(checkedValues),
-        //    success: function (data) {
-        //        alert('success');
-        //    },
-        //    error: function (data) {
-        //        alert(data);
-        //    }
-        //});
-
     });
 });
 
