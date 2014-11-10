@@ -88,8 +88,17 @@ namespace BatesOrtho.Controllers
         [HttpPost]
         public ActionResult CreateContactRequest(Contact request)
         {
-            string path = Server.MapPath("~/EmailTemplates/ContactEmail.cshtml");
-            
+            if (!String.IsNullOrEmpty(request.FirstName) && !String.IsNullOrEmpty(request.Email))
+            {
+                string path = Server.MapPath("~/EmailTemplates/ContactEmail.cshtml");
+                string template = System.IO.File.OpenText(path).ReadToEnd();
+                string message = Razor.Parse(template, request);
+                SendGmail mailer = new SendGmail();
+                mailer.Subject = "New Contact Request";
+                mailer.Body = message;
+                mailer.Send(mailer.Subject, message);
+            }
+           
             return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 

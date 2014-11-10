@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
 }
-@using BatesOrtho.Models
-@Model BatesOrtho.Models.ContactEmail
+@*@using BatesOrtho.Models
+@Model BatesOrtho.Models.ContactEmail*@
 <!DOCTYPE html>
 
 <html>
@@ -12,10 +12,10 @@
 </head>
 <body>
     <div>
-        <p>First Name: @Model.FirstName</p>
-        <p>Last Name: @Model.LastName</p>
-        <p>Email: @Model.Email</p>
-        <p>Message: @Model.Message</p>
+        <p><strong>First Name:</strong> @Model.FirstName</p>
+        <p><strong>Last Name:</strong> @Model.LastName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Message:</strong> @Model.Message</p>
     </div>
 </body>
 </html>
