@@ -135,7 +135,7 @@ $(document).ready(function (){
         var newPatient = $('#ddlNewPatient').val();
         var phone = $('#txtPhone').val();
         var email = $('#txtEmail').val();
-        var modeOfContact = $('#ddlModeOfContact').val();
+        var modeOfContact = $('#contactType').val();
         var convenientTimes = $('#txtConvenientTimes').val();
         var howDidYouHear = $('#txtHowDidYouHear').val();
         var dentistName = $('#txtGeneralDentistName').val();

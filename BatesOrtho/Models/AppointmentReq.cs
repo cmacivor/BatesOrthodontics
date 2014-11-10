@@ -11,6 +11,20 @@ namespace BatesOrtho.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public System.DateTime DOB { get; set; }
+        //private DateTime dob;
+
+        //public DateTime DOB
+        //{
+        //    get {
+        //        DateTime date = new DateTime();
+        //        dob = date.Date;
+        //        return dob; 
+        //    }
+        //    //set { dob = value; }
+        //}
+        
+
+       
         public string ResponsiblePartyFirstName { get; set; }
         public string ResponsiblePartyLastName { get; set; }
         public string IsNewPatient { get; set; }

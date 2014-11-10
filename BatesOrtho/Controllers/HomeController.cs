@@ -88,7 +88,7 @@ namespace BatesOrtho.Controllers
         [HttpPost]
         public ActionResult CreateContactRequest(Contact request)
         {
-
+            string path = Server.MapPath("~/EmailTemplates/ContactEmail.cshtml");
             
             return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
@@ -96,25 +96,20 @@ namespace BatesOrtho.Controllers
         [HttpPost]
         public JsonResult CreateAppointmentRequest(AppointmentReq apptRequest)
         {
-           if (apptRequest != null)
+           if (!String.IsNullOrEmpty(apptRequest.FirstName) && !String.IsNullOrEmpty(apptRequest.LastName) &&
+               !String.IsNullOrEmpty(apptRequest.ResponsiblePartyFirstName) && !String.IsNullOrEmpty(apptRequest.ResponsiblePartyLastName)
+               && !String.IsNullOrEmpty(apptRequest.Phone) && !String.IsNullOrEmpty(apptRequest.Email))
            {
-               //var template = new RazorEngine.Templating.TemplateService();
-              // var emailBody = template.Parse(System.IO.File.ReadAllText("~/EmailTemplates/AppointmentRequestEmail.cshtml"), apptRequest, null, null);
-               //string path = @"C:\Users\Craig\Documents\Visual Studio 2013\Projects\BatesOrtho\BatesOrtho\EmailTemplates";
+               
                string path = Server.MapPath("~/EmailTemplates/AppointmentRequestEmail.cshtml");
+               DateTime dateOnly = apptRequest.DOB.Date;
+               apptRequest.DOB = dateOnly;
                string template = System.IO.File.OpenText(path).ReadToEnd();
                string message = Razor.Parse(template, apptRequest);
-               
-               SendGmail.GmailUsername = "cmacivor82@gmail.com";
-               SendGmail.GmailPassword = "Caesar2810$";
-
                SendGmail mailer = new SendGmail();
-               mailer.ToEmail = "cmacivor82@gmail.com";
-               mailer.Subject = "Verify your email id";
-               //mailer.Body = "Thanks for Registering your account.<br> please verify your email id by clicking the link <br> <a href='youraccount.com/verifycode=12323232'>verify</a>";
+               mailer.Subject = "New Appointment Request";
                mailer.Body = message;
-               mailer.IsHtml = true;
-               mailer.Send();
+               mailer.Send(mailer.Subject, message);
            }
 
             return Json("OK");

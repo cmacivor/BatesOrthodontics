@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
 }
-@using BatesOrtho.Models
-@Model BatesOrtho.Models.AppointmentReq
+@*@using BatesOrtho.Models*@
+@*@Model BatesOrtho.Models.AppointmentReq*@
 
 <!DOCTYPE html>
 
@@ -13,20 +13,27 @@
 </head>
 <body>
     <div>
-     <p>First Name: @Model.FirstName</p>
-     <p>Last Name: @Model.LastName</p>
-     <p>DOB: @Model.DOB</p>
-     <p>Responsible Party First Name: @Model.ResponsiblePartyFirstName</p>
-     <p>Responsible Party Last Name: @Model.ResponsiblePartyLastName</p>
-     <p>New Patient? @Model.IsNewPatient</p>
-     <p>Phone: @Model.Phone</p>
-     <p>Email: @Model.Email</p>
-     <p>Preferred Mode Of Contact: @Model.PreferredModeOfContact</p>
-     <p>Convenient Times: @Model.ConvenientTimes</p>
-     <p>How Did You Hear? @Model.HowDidYouHear</p>
-     <p>General Dentist Name: @Model.GeneralDentistName</p>
-     <p>Additional Comments: @Model.AdditionalComments</p>
-     <p>Preferred Days: @Model.PreferredDays</p>
+        <p><strong> Name:</strong> @Model.FirstName</p>
+        <p><strong>Last Name:</strong> @Model.LastName</p>
+        <p><strong>DOB:</strong> @Model.DOB.ToString("d")</p>
+        <p><strong>Responsible Party First Name:</strong> @Model.ResponsiblePartyFirstName</p>
+        <p><strong>Responsible Party Last Name:</strong> @Model.ResponsiblePartyLastName</p>
+        <p><strong>New Patient?</strong> @Model.IsNewPatient</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Preferred Mode Of Contact:</strong> @Model.PreferredModeOfContact</p>
+        <p><strong>Convenient Times:</strong> @Model.ConvenientTimes</p>
+        <p><strong>How Did You Hear?</strong> @Model.HowDidYouHear</p>
+        <p><strong>General Dentist Name:</strong> @Model.GeneralDentistName</p>
+        <p><strong>Additional Comments:</strong> @Model.AdditionalComments</p>
+        <p><strong>
+    Preferred Days:
+  </strong><br /> @foreach (var item in Model.PreferredDays)
+            {
+             @item <br />
+            }
+       </p>
     </div>
 </body>
+
 </html>
