@@ -1,8 +1,7 @@
 ﻿@{
     Layout = null;
 }
-@using BatesOrtho.Models
-@Model BatesOrtho.Models.DoctorRef
+
 <!DOCTYPE html>
 
 <html>
@@ -12,16 +11,16 @@
 </head>
 <body>
     <div>
-     <p>Doctor First Name:  @Model.DoctorFirstName</p>
-     <p>Doctor Last Name: @Model.DoctorLastName</p>
-     <p>Practice Name: @Model.PracticeName</p>
-     <p>Doctor Email: @Model.DoctorEmail</p>
-     <p>Patient First Name: @Model.PatientFirstName</p>
-     <p>Patient Last Name: @Model.PatientLastName</p>
-     <p>Patient Phone Number: @Model.PatientPhoneNumber</p>
-     <p>Patient Email Address: @Model.PatientEmailAddress</p>
-     <p>Radiographs Sent: @Model.RadiographsSent</p>
-     <p>Comments: @Model.Comments</p>
+     <p><strong>Doctor First Name:</strong>  @Model.DoctorFirstName</p>
+     <p><strong>Last Name:</strong> @Model.DoctorLastName</p>
+     <p><strong>Practice Name:</strong> @Model.PracticeName</p>
+     <p><strong>Doctor Email:</strong> @Model.DoctorEmail</p>
+     <p><strong>Patient First Name:</strong> @Model.PatientFirstName</p>
+     <p><strong>Patient Last Name:</strong> @Model.PatientLastName</p>
+     <p><strong>Patient Phone Number:</strong> @Model.PatientPhoneNumber</p>
+     <p><strong>Patient Email Address:</strong> @Model.PatientEmailAddress</p>
+     <p><strong>Radiographs Sent:</strong> @Model.RadiographsSent</p>
+     <p><strong>Comments:</strong> @Model.Comments</p>
     </div>
 </body>
 </html>

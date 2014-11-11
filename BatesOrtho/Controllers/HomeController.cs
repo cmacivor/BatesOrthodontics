@@ -16,8 +16,6 @@ namespace BatesOrtho.Controllers
     public class HomeController : Controller
     {
 
-        //private BatesOrthoEntities db = new BatesOrthoEntities();
-
         public ActionResult Index()
         {
             return View();
@@ -56,11 +54,6 @@ namespace BatesOrtho.Controllers
             return View("ThankYou");
         }
 
-        public ActionResult DoctorReferral()
-        {
-            return View();
-        }
-
         public ActionResult SponsorshipRequest()
         {
             return View();
@@ -70,19 +63,30 @@ namespace BatesOrtho.Controllers
         public JsonResult CreateSponsorshipRequest(Sponsorship request)
         {
             
-            return Json("OK");
+            //return Json("OK");
+            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 
 
         [HttpPost]
         public JsonResult CreateDoctorReferral(DoctorRef referral)
         {
-            //using (var ctx = new BatesOrthoEntities())
-            //{
-            //   ctx.DoctorReferrals.Add(referral);
-            //   ctx.SaveChanges();
-            //}
-            return Json("OK");
+            if (!String.IsNullOrEmpty(referral.DoctorFirstName) && !String.IsNullOrEmpty(referral.DoctorLastName) 
+                && !String.IsNullOrEmpty(referral.PracticeName) && !String.IsNullOrEmpty(referral.DoctorEmail) &&
+                !String.IsNullOrEmpty(referral.PatientFirstName) && !String.IsNullOrEmpty(referral.PatientLastName)
+                && !String.IsNullOrEmpty(referral.PatientPhoneNumber) && !String.IsNullOrEmpty(referral.PatientEmailAddress))
+            {
+                string path = Server.MapPath("~/EmailTemplates/DoctorReferralEmail.cshtml");
+                string template = System.IO.File.OpenText(path).ReadToEnd();
+                string message = Razor.Parse(template, referral);
+                SendGmail mailer = new SendGmail();
+                mailer.Subject = "New Doctor Referral";
+                mailer.Body = message;
+                mailer.Send(mailer.Subject, message);
+            }
+            
+            //return Json("OK");
+            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 
         [HttpPost]
@@ -97,8 +101,9 @@ namespace BatesOrtho.Controllers
                 mailer.Subject = "New Contact Request";
                 mailer.Body = message;
                 mailer.Send(mailer.Subject, message);
+                
+                
             }
-           
             return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 
@@ -121,7 +126,8 @@ namespace BatesOrtho.Controllers
                mailer.Send(mailer.Subject, message);
            }
 
-            return Json("OK");
+            //return Json("OK");
+           return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 
         //[HttpPost]

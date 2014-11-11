@@ -45,6 +45,9 @@
 
                         <div class="col-md-9 right" role="main">                            
                             <h2>Have anymore questions? Contact Us.</h2>
+                            <div id="success">
+
+                            </div>
                             <form role="form" id="contact-us">
                                 <div class="form-group">
                                     <label for="firstName">First Name <span class="required">*</span></label>
@@ -70,7 +73,7 @@
                                   <textarea class="form-control" rows="3" id="message"></textarea>
                                 </div>
                                 <div id="divThankYou">
-
+                                    
                                 </div>                                
                                 <button class="btn btn-default" id="btnSaveContactRequest">Send</button>
                                 
@@ -84,7 +87,8 @@
             </section><!-- /#main-content -->
 
 <script type="text/javascript">
-    $('#btnSaveContactRequest').click(function () {
+    $('#btnSaveContactRequest').click(function (event) {
+        event.preventDefault();
         //alert('test')
         var firstName = $('#firstName').val();
         var lastName = $('#lastName').val();
@@ -95,6 +99,7 @@
             url: "/Home/CreateContactRequest",
             type: 'POST',
             dataType: 'JSON',
+            
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 request: {
@@ -104,15 +109,29 @@
                     'Message': message
                 }
             }),
-            success: function (data) {
+            success: function (data, status, jqXHR) {
                 //console.log(data.url);
-                window.location = data.url;
+                window.location.href = data.url;
+                //alert(data.url);
+                //console.log(data.url);
+                //alert('test');
+                //window.location.href = 'Home/ThankYou';
+                //alert('test');
+               // alert(data);
+               // $('#divThankYou').text(data);
             },
-            error: function (data) {
+            error: function (jqXHR, status, err) {
                 console.log(data);
+            },
+            complete: function (data) {
+                //alert('test complete');
+                //alert(data.url);
+                //window.location.href = 'Home/ThankYou';
             }
         })
     });
+
+   
 </script>
 
 
@@ -121,6 +140,6 @@
 {
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>*@
  
 }

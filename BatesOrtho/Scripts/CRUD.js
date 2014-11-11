@@ -7,8 +7,8 @@ $(document).ready(function (){
 
 
 
-    $('#btnSaveSponsorshipRequest').click(function () {
-        
+    $('#btnSaveSponsorshipRequest').click(function (event) {
+        event.preventDefault();
         var checkedValues = $('input[name="typeOfAd"]:checked').map(function () {
             return this.value;
         }).get();
@@ -55,20 +55,8 @@ $(document).ready(function (){
                     'AdTypes': checkedValues
                 } 
             }),
-            success: function () {
-                $('#dateSponsorshipRequest').val('');
-                $('#txtFirstName').val('');
-                $('#txtLastName').val('');
-                $('#txtPhone').val('');
-                $('#txtAddress').val('');
-                $('#txtAddressLine2').val('');
-                $('#txtCity').val('');
-                $('#ddlState').val('');
-                $('#txtZip').val('');
-                $('#txtPatientTreatmentStatus').val('');
-                $('#txtOrganization').val('');
-                $('#txtCheckPayableTo').val('');
-                $('#txtComments').val('');
+            success: function (data) {
+                window.location.href = data.url;
             },
             error: function (data) {
                 alert(data);
@@ -77,7 +65,8 @@ $(document).ready(function (){
     });
 
 
-    $('#btnSaveDoctorReferral').click(function () {
+    $('#btnSaveDoctorReferral').click(function (event) {
+        event.preventDefault();
         var firstName = $('#txtDoctorFirstName').val();
         var lastName = $('#txtDoctorLastName').val();
         var practiceName = $('#txtPracticeName').val();
@@ -85,7 +74,7 @@ $(document).ready(function (){
         var patientFirstName = $('#txtPatientFirstName').val();
         var patientLastName = $('#txtPatientLastName').val();
         var patientPhone = $('#txtPatientPhone').val();
-        var patientEmail = $('#txtEmail').val();
+        var patientEmail = $('#txtPatientEmail').val();
         var radiographsSent = $("input:radio[name ='radiograph']:checked").val();
         var comments = $('#txtComments').val();
 
@@ -107,17 +96,8 @@ $(document).ready(function (){
                     'Comments': comments
                 }
             }),
-            success: function () {
-                $('#txtDoctorFirstName').val('');
-                $('#txtDoctorLastName').val('');
-                $('#txtPracticeName').val('');
-                $('#txtEmail').val('');
-                $('#txtPatientFirstName').val('');
-                $('#txtPatientLastName').val('');
-                $('#txtPatientPhone').val('');
-                $('#txtEmail').val('');
-                $("input:radio[name ='radiographs']").val('');
-                $('#txtComments').val('');
+            success: function (data) {
+                window.location.href = data.url;
             },
             error: function (data) {
                 alert(data);
@@ -126,7 +106,8 @@ $(document).ready(function (){
     });
 
 
-    $('#btnSaveAppointmentRequest').click(function () {
+    $('#btnSaveAppointmentRequest').click(function (event) {
+        event.preventDefault();
         var firstName = $('#txtFirstName').val();
         var lastName = $('#txtLastName').val();
         var dob = $('#txtDOB').val();
@@ -174,20 +155,7 @@ $(document).ready(function (){
 
             }),
             success: function (data) {
-                //alert(data);
-                $('#txtFirstName').val('');
-                $('#txtLastName').val('');
-                $('#txtDOB').val('');
-                $('#txtRespPartyFirstName').val('');
-                $('#txtRespPartyLastName').val('');
-                $('#txtPhone').val('');
-                $('#txtEmail').val('');
-                $('#txtConvenientTimes').val('');
-                $('#txtHowDidYouHear').val('');
-                $('#txtGeneralDentistName').val('');
-                $('#txtGeneralDentistName').val('');
-                $('#txtAdditionalComments').val('');
-                //$(this).closest('form').find("input[type=text], textarea").val("");
+                window.location.href = data.url;
             },
             error: function (data) {
                 //alert(data);
