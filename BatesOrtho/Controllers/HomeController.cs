@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Net.Mail;
 using System.Net;
 using BatesOrtho;
+using System.Threading.Tasks;
 
 namespace BatesOrtho.Controllers
 {
@@ -90,7 +91,7 @@ namespace BatesOrtho.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateContactRequest(Contact request)
+        public  ActionResult CreateContactRequest(Contact request)
         {
             if (!String.IsNullOrEmpty(request.FirstName) && !String.IsNullOrEmpty(request.Email))
             {
@@ -102,10 +103,28 @@ namespace BatesOrtho.Controllers
                 mailer.Body = message;
                 mailer.Send(mailer.Subject, message);
                 
-                
+  
             }
             return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
+
+        //[HttpPost]
+        //public async Task<ActionResult> CreateContactRequest(Contact request)
+        //{
+        //    if (!String.IsNullOrEmpty(request.FirstName) && !String.IsNullOrEmpty(request.Email))
+        //    {
+        //        string path = Server.MapPath("~/EmailTemplates/ContactEmail.cshtml");
+        //        string template = System.IO.File.OpenText(path).ReadToEnd();
+        //        string message = Razor.Parse(template, request);
+        //        SendGmail mailer = new SendGmail();
+        //        mailer.Subject = "New Contact Request";
+        //        mailer.Body = message;
+        //        await mailer.Send(mailer.Subject, message);
+
+
+        //    }
+        //    return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
+        //}
 
         [HttpPost]
         public JsonResult CreateAppointmentRequest(AppointmentReq apptRequest)

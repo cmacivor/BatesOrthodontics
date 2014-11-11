@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace BatesOrtho
 {
@@ -57,6 +59,30 @@ namespace BatesOrtho
             GmailSSL = true;
         }
 
+        //ideas adopted from here:
+        //http://stackoverflow.com/questions/20129933/sendmailasync-use-in-mvc
+        //public async Task Send(string subjectText, string messageBody)
+        //{
+        //    SmtpClient smtp = new SmtpClient();
+        //    smtp.Host = GmailHost;
+        //    smtp.Port = GmailPort;
+        //    smtp.EnableSsl = GmailSSL;
+        //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+        //    smtp.UseDefaultCredentials = false;
+        //    smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
+        //    smtp.Timeout = 30000;
+            
+        //    using (var message = new MailMessage("cmacivor@yahoo.com", ToEmail, subjectText, messageBody))
+        //    {
+        //        message.Subject = Subject;
+        //        message.Body = Body;
+        //        message.IsBodyHtml = IsHtml;
+        //        //smtp.Send(message);
+        //        //smtp.SendAsync(message, null);
+        //        await smtp.SendMailAsync(message);
+        //    }
+        //}
+
         public void Send(string subjectText, string messageBody)
         {
             SmtpClient smtp = new SmtpClient();
@@ -67,14 +93,17 @@ namespace BatesOrtho
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
             smtp.Timeout = 30000;
-            
-            using (var message = new MailMessage("cmacivor@yahoo.com", ToEmail, subjectText, messageBody))
-            {
-                message.Subject = Subject;
-                message.Body = Body;
-                message.IsBodyHtml = IsHtml;
+
+           
+            MailMessage message = new MailMessage("cmacivor@yahoo.com", ToEmail, subjectText, messageBody);
+            message.Subject = Subject;
+            message.Body = Body;
+            message.IsBodyHtml = IsHtml;
+               
+            new Thread(() => { 
                 smtp.Send(message);
-            }
+                message.Dispose();
+            }).Start();
         }
     }
 }
