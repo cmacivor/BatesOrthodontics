@@ -565,8 +565,10 @@ form .open > .dropdown-toggle.btn-default {
 }
 .error{
     color: red;
-    font-size: .6em;
-    padding-top: 6px;
+    border:1px solid red !important;
+}
+label.error{
+    display: none !important;
 }
 .checkbox label.error{
     position: absolute;

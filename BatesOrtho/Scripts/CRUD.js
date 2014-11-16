@@ -5,10 +5,69 @@
 
 $(document).ready(function (){
 
+    // Validations
+    $("#patient-appt").validate({     
+          rules:{
+            required: true, 
+            txtFirstName: "required",
+            txtLastName: "required",
+            txtDOB: "required",
+            txtRespPartyFirstName: "required",
+            txtRespPartyLastName: "required",
+            ddlNewPatient: "required",
+            txtPhone: "required",
+            txtEmail:{
+                required: true,
+                email: true
+            },
+            contactType: "required",            
+            prefApptDays: {
+                  required: true,
+                  minlength: 1
+            }
+
+          }   
+        });
+        $("#patient-refer").validate({    
+          rules:{
+            required: true,             
+            txtDoctorFirstName: "required",
+            txtDoctorLastName: "required",
+            txtPracticeName: "required",
+            txtEmail:{
+                required: true,
+                email: true
+            },
+            txtPatientFirstName: "required",
+            txtPatientLastName: "required",
+            txtPatientPhone: "required",
+            txtPatientEmail:{
+                required: true,
+                email: true
+            },
+            radiograph: {
+                  required: true,
+                  minlength: 1
+              }
+          }   
+        });     
+
+    $("#btnSaveAppointmentRequest").click(function(){   
+        $('#patient-app').validate();   
+        if($('#patient-app').valid()){ //checks if it's valid
+            return true;
+        }else{
+           return false;
+        };
+    });
+
+
 
 
     $('#btnSaveSponsorshipRequest').click(function (event) {
         event.preventDefault();
+
+
         var checkedValues = $('input[name="typeOfAd"]:checked').map(function () {
             return this.value;
         }).get();
@@ -67,6 +126,17 @@ $(document).ready(function (){
 
     $('#btnSaveDoctorReferral').click(function (event) {
         event.preventDefault();
+
+        $('#patient-refer').validate();
+        if($('#patient-refer').valid()){ 
+            return true;
+        }else{
+            var validator = $( "#patient-refer" ).validate();
+            validator.showErrors();
+           return false;
+
+        };  
+
         var firstName = $('#txtDoctorFirstName').val();
         var lastName = $('#txtDoctorLastName').val();
         var practiceName = $('#txtPracticeName').val();
