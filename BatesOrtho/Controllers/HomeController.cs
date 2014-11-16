@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using BatesOrtho;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace BatesOrtho.Controllers
 {
@@ -40,6 +41,44 @@ namespace BatesOrtho.Controllers
         {
             ViewBag.Message = "patients";
 
+            return View();
+        }
+
+        public ActionResult Blog()
+        {
+            WebClient client = new WebClient();
+            string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
+            //string searchPattern = "blog.bates-orthodontics.com";
+            //int count = Regex.Matches(downloadString, searchPattern).Count;
+            //string output;
+            //Regex regx = new Regex("http://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?", RegexOptions.IgnoreCase);
+            //MatchCollection mactches = regx.Matches(downloadString);
+            //foreach (Match match in mactches)
+            //{
+            //    output = downloadString.Replace(match.Value, "<a href='" + match.Value + "'>" + match.Value + "</a>");
+            //}    
+
+            //string[] splitText = downloadString.Split(new char[] { ' ' });
+            //string[] matches = { "http://blog.bates-orthodontics.com/2014"};
+            //var query = from text in splitText
+            //            let w = text.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' },
+            //                                        StringSplitOptions.RemoveEmptyEntries)
+            //            where w.Distinct().Intersect(matches).Count() == matches.Count()
+            //            select text;
+            //foreach (string str in query)
+            //{
+
+            //}
+            Regex linkParser = new Regex(@"\b(?:https?://|www\.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            foreach (Match m in linkParser.Matches(downloadString))
+
+
+            //foreach (Match m in Regex.Matches(downloadString, searchPattern))
+                
+
+            //MatchCollection matches = new MatchCollection();
+            //matches = Regex.Matches(downloadString, searchPattern);
+            ViewBag.Message = "This is a test";
             return View();
         }
 
@@ -172,6 +211,18 @@ namespace BatesOrtho.Controllers
         //    return Json("OK");
         //}
 
+
+        //string ReadTextFromUrl(string url)
+        //{
+        //    // WebClient is still convenient
+        //    // Assume UTF8, but detect BOM - could also honor response charset I suppose
+        //    using (var client = new WebClient())
+        //    using (var stream = client.OpenRead(url))
+        //    using (var textReader = new StreamReader(stream, Encoding., true))
+        //    {
+        //        return textReader.ReadToEnd();
+        //    }
+        //}
 
     }
 
