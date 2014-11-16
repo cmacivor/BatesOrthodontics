@@ -45,25 +45,43 @@ $(document).ready(function(){
 	}).parent().addClass('active');		
 		//on link find h1 text equal to link and then add a class to this link
 
-	$("#patient-appt").validate({	  
-	  rules:{
-	  	required: true, 
-	  	prefApptDays: {
-              required: true,
-              minlength: 1
-          }
-	  }	  
-	});	
-	
-	$("#patient-refer").validate({	  
-	  rules:{
-	  	required: true, 
-	  	radiograph: {
-              required: true,
-              minlength: 1
-          }
-	  }	  
-	});	
+		$("#patient-appt").validate({	  
+		  rules:{
+		  	required: true, 
+		  	txtFirstName: "required",
+		  	txtLastName: "required",
+		  	prefApptDays: {
+	              required: true,
+	              minlength: 1
+	          }
+		  }	  
+		});
+		$("#patient-refer").validate({	  
+		  rules:{
+		  	required: true, 
+		  	radiograph: {
+	              required: true,
+	              minlength: 1
+	          }
+		  }	  
+		});		
+	$("#btnSaveAppointmentRequest").click(function(){	
+		$('#patient-app').validate()	
+		if($('#patient-app').valid()){ //checks if it's valid
+	      	return false;
+	   	}else{
+	       return false;
+	   	};
+	});
+
+
+	$("#btnSaveDoctorReferral").submit(function(){		
+		if($('#patient-refer').valid()){ 
+	   	}
+	    else{
+	       return false;
+	   	};
+	});
 	
 
 });
