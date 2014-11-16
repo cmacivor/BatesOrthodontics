@@ -563,7 +563,19 @@ form .open > .dropdown-toggle.btn-default {
 .form-control{
 	height: 40px;
 }
-
+.error{
+    color: red;
+    font-size: .6em;
+    padding-top: 6px;
+}
+.checkbox label.error{
+    position: absolute;
+    left: 190px;
+    top: auto;
+    color: red;
+    font-size: .8em;
+    padding: 4px;
+}
 /* -------------- */
 /* -- Footer
 /* -------------- */

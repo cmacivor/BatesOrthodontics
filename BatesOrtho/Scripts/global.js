@@ -50,37 +50,64 @@ $(document).ready(function(){
 		  	required: true, 
 		  	txtFirstName: "required",
 		  	txtLastName: "required",
+		  	txtDOB: "required",
+		  	txtRespPartyFirstName: "required",
+		  	txtRespPartyLastName: "required",
+		  	ddlNewPatient: "required",
+		  	txtPhone: "required",
+		  	txtEmail:{
+		  		required: true,
+      			email: true
+		  	},
+		  	contactType: "required",		  	
 		  	prefApptDays: {
 	              required: true,
 	              minlength: 1
-	          }
+	        }
+
 		  }	  
 		});
 		$("#patient-refer").validate({	  
 		  rules:{
-		  	required: true, 
+		  	required: true, 		  	
+		  	txtDoctorFirstName: "required",
+	        txtDoctorLastName: "required",
+	        txtPracticeName: "required",
+	        txtEmail:{
+		  		required: true,
+      			email: true
+		  	},
+		  	txtPatientFirstName: "required",
+		  	txtPatientLastName: "required",
+		  	txtPatientPhone: "required",
+		  	txtPatientEmail:{
+		  		required: true,
+      			email: true
+		  	},
 		  	radiograph: {
 	              required: true,
 	              minlength: 1
 	          }
 		  }	  
 		});		
+
 	$("#btnSaveAppointmentRequest").click(function(){	
-		$('#patient-app').validate()	
+		$('#patient-app').validate();	
 		if($('#patient-app').valid()){ //checks if it's valid
-	      	return false;
+	      	return true;
 	   	}else{
 	       return false;
 	   	};
+
 	});
 
-
-	$("#btnSaveDoctorReferral").submit(function(){		
+	$("#btnSaveDoctorReferral").click(function(){		
+		$('#patient-refer').validate();
 		if($('#patient-refer').valid()){ 
-	   	}
-	    else{
+			return true;
+	   	}else{
 	       return false;
-	   	};
+	   	};	   	
 	});
 	
 
