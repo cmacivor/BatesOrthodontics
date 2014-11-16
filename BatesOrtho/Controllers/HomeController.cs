@@ -21,6 +21,31 @@ namespace BatesOrtho.Controllers
 
         public ActionResult Index()
         {
+            //ViewBag.Test = "Woooo";
+            //string content = GetBlogContentString();
+
+            WebClient client = new WebClient();
+            string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
+
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            //doc.Load(downloadString);
+            doc.LoadHtml(downloadString);
+            var anchor = doc.DocumentNode.SelectNodes("//a[contains(@href, 'http://blog.bates-orthodontics.com/2014')]");
+
+            var filtered = from f in anchor
+                           where f.InnerText.Contains("Comment") ||
+                           f.InnerText.Contains("Leave a reply")
+                           select f;
+            var nonReplyLinks = anchor.Except(filtered);
+
+            var datedLinks = from d in nonReplyLinks
+                             where d.InnerText.Contains("2014")
+                             select d;
+            var noDates = nonReplyLinks.Except(datedLinks).FirstOrDefault();
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append(noDates.OuterHtml);
+            ViewBag.BlogTitle = noDates.OuterHtml;
+
             return View();
         }
 
@@ -165,8 +190,13 @@ namespace BatesOrtho.Controllers
         //    return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         //}
 
-        [HttpGet]
-        public string GetBlogPost()
+        //[HttpGet]
+        //public string GetBlogPost()
+        //{
+        //   //string content 
+        //}
+
+        public string GetBlogContentString()
         {
             WebClient client = new WebClient();
             string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
@@ -185,17 +215,17 @@ namespace BatesOrtho.Controllers
             var datedLinks = from d in nonReplyLinks
                              where d.InnerText.Contains("2014")
                              select d;
-            var noDates = nonReplyLinks.Except(datedLinks);
+            var noDates = nonReplyLinks.Except(datedLinks).FirstOrDefault();
             StringBuilder sb = new StringBuilder();
-            
-            foreach (var item in noDates)
-            {
-                //Console.WriteLine(item.ParentNode.InnerHtml);
-                //Console.WriteLine(item.OuterHtml);
-                //string test = item.OuterHtml;
-                sb.Append(item.OuterHtml);
-                sb.Append("</br>");
-            }
+            sb.Append(noDates.OuterHtml);
+            //foreach (var item in noDates)
+            //{
+            //    //Console.WriteLine(item.ParentNode.InnerHtml);
+            //    //Console.WriteLine(item.OuterHtml);
+            //    //string test = item.OuterHtml;
+            //    sb.Append(item.OuterHtml);
+            //    sb.Append("</br>");
+            //}
             return sb.ToString();
         }
 
