@@ -12,6 +12,7 @@ using System.Net;
 using BatesOrtho;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace BatesOrtho.Controllers
 {
@@ -48,38 +49,37 @@ namespace BatesOrtho.Controllers
         {
             WebClient client = new WebClient();
             string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
-            //string searchPattern = "blog.bates-orthodontics.com";
-            //int count = Regex.Matches(downloadString, searchPattern).Count;
-            //string output;
-            //Regex regx = new Regex("http://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?", RegexOptions.IgnoreCase);
-            //MatchCollection mactches = regx.Matches(downloadString);
-            //foreach (Match match in mactches)
-            //{
-            //    output = downloadString.Replace(match.Value, "<a href='" + match.Value + "'>" + match.Value + "</a>");
-            //}    
 
-            //string[] splitText = downloadString.Split(new char[] { ' ' });
-            //string[] matches = { "http://blog.bates-orthodontics.com/2014"};
-            //var query = from text in splitText
-            //            let w = text.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' },
-            //                                        StringSplitOptions.RemoveEmptyEntries)
-            //            where w.Distinct().Intersect(matches).Count() == matches.Count()
-            //            select text;
-            //foreach (string str in query)
-            //{
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            //doc.Load(downloadString);
+            doc.LoadHtml(downloadString);
+            var anchor = doc.DocumentNode.SelectNodes("//a[contains(@href, 'http://blog.bates-orthodontics.com/2014')]");
 
-            //}
-            Regex linkParser = new Regex(@"\b(?:https?://|www\.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            foreach (Match m in linkParser.Matches(downloadString))
+            var filtered = from f in anchor
+                           where f.InnerText.Contains("Comment") ||
+                           f.InnerText.Contains("Leave a reply")
+                           select f;
+            var nonReplyLinks = anchor.Except(filtered);
 
+            var datedLinks = from d in nonReplyLinks
+                             where d.InnerText.Contains("2014")
+                             select d;
+            var noDates = nonReplyLinks.Except(datedLinks);
+            StringBuilder sb = new StringBuilder();
+            
+            foreach (var item in noDates)
+            {
+                //Console.WriteLine(item.ParentNode.InnerHtml);
+                //Console.WriteLine(item.OuterHtml);
+                //string test = item.OuterHtml;
+                sb.Append(item.OuterHtml);
+                sb.Append("</br>");
+            }
 
-            //foreach (Match m in Regex.Matches(downloadString, searchPattern))
-                
-
-            //MatchCollection matches = new MatchCollection();
-            //matches = Regex.Matches(downloadString, searchPattern);
-            ViewBag.Message = "This is a test";
-            return View();
+            //ViewBag.Message = "This is a test";
+            //return View();
+            //return sb.ToString();
+            return Content(sb.ToString());
         }
 
         public ActionResult AppointmentRequest()
@@ -164,6 +164,40 @@ namespace BatesOrtho.Controllers
         //    }
         //    return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         //}
+
+        [HttpGet]
+        public string GetBlogPost()
+        {
+            WebClient client = new WebClient();
+            string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
+
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            //doc.Load(downloadString);
+            doc.LoadHtml(downloadString);
+            var anchor = doc.DocumentNode.SelectNodes("//a[contains(@href, 'http://blog.bates-orthodontics.com/2014')]");
+
+            var filtered = from f in anchor
+                           where f.InnerText.Contains("Comment") ||
+                           f.InnerText.Contains("Leave a reply")
+                           select f;
+            var nonReplyLinks = anchor.Except(filtered);
+
+            var datedLinks = from d in nonReplyLinks
+                             where d.InnerText.Contains("2014")
+                             select d;
+            var noDates = nonReplyLinks.Except(datedLinks);
+            StringBuilder sb = new StringBuilder();
+            
+            foreach (var item in noDates)
+            {
+                //Console.WriteLine(item.ParentNode.InnerHtml);
+                //Console.WriteLine(item.OuterHtml);
+                //string test = item.OuterHtml;
+                sb.Append(item.OuterHtml);
+                sb.Append("</br>");
+            }
+            return sb.ToString();
+        }
 
         [HttpPost]
         public JsonResult CreateAppointmentRequest(AppointmentReq apptRequest)
