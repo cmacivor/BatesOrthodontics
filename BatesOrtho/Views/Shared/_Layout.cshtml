@@ -14,6 +14,14 @@
     
     <link href='@Url.Content("~/Content/flexslider.css")' rel="stylesheet" type="text/css">
     <link href='@Url.Content("~/Content/datepicker.css")' rel="stylesheet" type="text/css" media="screen">
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        .flexslider .caption:hover,
+        .flexslider .caption {
+           filter: none;
+        }
+      </style>
+    <![endif]-->
 
     @Scripts.Render("~/bundles/modernizr")
 
@@ -56,7 +64,7 @@
                         <li>@Html.ActionLink("About", "About")</li>
                         <li>@Html.ActionLink("New Patients", "Patients", "Home")</li>
                         <li>@Html.ActionLink("Appointments", "AppointmentRequest", "Home")</li>
-                        <li><a href="http://blog.bates-orthodontics.com/">Blog</a></li>
+                        <li><a href="http://blog.bates-orthodontics.com/" target="_blank">Blog</a></li>
                         @*<li>@Html.ActionLink("Blog", "Blog", "Home")</li>*@
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                       </ul>
@@ -155,7 +163,9 @@
         });
 
         $('.collapse').collapse('toggle');
-        $('.input-group.date').datepicker();
+        $('.input-group.date').datepicker({
+            autoclose: true
+        });
 
 
         

@@ -8,11 +8,11 @@
             <header class="sub-page-title">                         
                 <div class="container">
                     <div class="row">                        
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             
-                            <img src="~/images/application.jpg" class="img-responsive">                                                                                   
+                            <img src="~/images/hero/contact-hero.jpg" class="img-responsive">                                                                                   
                         </div>
-                        <div class="col-md-6 title-text">
+                        <div class="col-lg-6 title-text">
                             <h1>Contact</h1>
                             <p>Thank you for your interest in our services.  Please fill out the information below, and our scheduling coordinator will contact you to schedule an appointment time.  We look forward to seeing you soon.</p>
                             <p>Please note this form is for requesting an appointment.  If you need to cancel or reschedule an existing appointment, or if you require immediate attention, please contact our practice directly.</p>
@@ -69,13 +69,13 @@
                                     </div>
                                 </div>                                
                                 <div class="form-group">
-                                  <label class="control-label" for="message">Message</label>
-                                  <textarea class="form-control" rows="3" id="message"></textarea>
+                                  <label class="control-label" for="message">Message <span class="required">*</span></label>
+                                  <textarea class="form-control" rows="3" id="message" required></textarea>
                                 </div>
                                 <div id="divThankYou">
                                     
                                 </div>                                
-                                <button class="btn btn-default" id="btnSaveContactRequest">Send</button>
+                                <input type="submit" class="btn btn-default" id="btnSaveContactRequest" value="Send Message">
                                 
                             </form>
                              
@@ -86,54 +86,6 @@
                 
             </section><!-- /#main-content -->
 
-<script type="text/javascript">
-    $('#btnSaveContactRequest').click(function (event) {
-        event.preventDefault();
-        //alert('test')
-        var firstName = $('#firstName').val();
-        var lastName = $('#lastName').val();
-        var email = $('#txtEmail').val();
-        var message = $('#message').val();
-
-        $.ajax({
-            url: "/Home/CreateContactRequest",
-            type: 'POST',
-            dataType: 'JSON',
-            
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({
-                request: {
-                    'FirstName': firstName,
-                    'LastName': lastName,
-                    'Email': email,
-                    'Message': message
-                }
-            }),
-            success: function (data, status, jqXHR) {
-                //console.log(data.url);
-                window.location.href = data.url;
-                //alert(data.url);
-                //console.log(data.url);
-                //alert('test');
-                //window.location.href = 'Home/ThankYou';
-                //alert('test');
-               // alert(data);
-               // $('#divThankYou').text(data);
-            },
-            error: function (jqXHR, status, err) {
-                console.log(data);
-            },
-            complete: function (data) {
-                //alert('test complete');
-                //alert(data.url);
-                //window.location.href = 'Home/ThankYou';
-            }
-        })
-    });
-
-   
-</script>
-
 
 
 @section scripts 
@@ -141,6 +93,6 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
    <script type="text/javascript" src="@Url.Content("~/Scripts/global.js")"></script>
-    @*<script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CRUD.js")"></script>
  
 }

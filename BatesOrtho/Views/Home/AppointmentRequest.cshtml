@@ -1,50 +1,18 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- UPDATED FORM BELOW
 
-<br />
-<br />
-<div>
-    First Name: <input type="text" id="txtFirstName" /><br />
-    LastName: <input type="text" id="txtLastName" /><br />
-    Date of Birth: <input type="text" id="txtDOB" /><br />
-    Res. Party First Name: <input type="text" id="txtRespPartyFirstName" /><br />
-    Res. Party Last Name: <input type="text" id="txtRespPartyLastName" /><br />
-    New Patient? <select id="ddlNewPatient">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-    <br />
-    Phone: <input type="tel" id="txtPhone" /><br />
-    Email: <input type="email" id="txtEmail" /><br />
-    Preferred Mode of Contact: <select id="ddlModeOfContact">
-        <option value="Phone">Phone</option>
-        <option value="Email">Email</option>
-    </select><br />
-    Preferred Appointment Days: <br />
-    <input type="checkbox" name="prefApptDays" value="Monday" />Monday (West End)<br />
-    <input type="checkbox" name="prefApptDays" value="Tuesday" />Tuesday (West End)<br />
-    <input type="checkbox" name="prefApptDays" value="Wednesday" />Wednesday (West End)<br />
-    <input type="checkbox" name="prefApptDays" value="Thursday" />Thursday (Mechanicsville)<br />
-    Convenient Times: <input type="text" id="txtConvenientTimes" /><br />
-    How did you hear about our practice? <input type="text" id="txtHowDidYouHear" /><br />
-    Name of General Dentist: <input type="text" id="txtGeneralDentistName" /><br />
-    Additional Comments: <input type="text" id="txtAdditionalComments" /><br />
-    <button id="btnSaveAppointmentRequest">Save</button>
-</div>
- -->
 
 
 
             <header class="sub-page-title">                         
                 <div class="container">
                     <div class="row">                        
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             
-                            <img src="~/images/application.jpg" class="img-responsive">                                                                                   
+                            <img src="~/images/hero/appointments-hero.jpg" class="img-responsive">                                                                                   
                         </div>
-                        <div class="col-md-6 title-text">
+                        <div class="col-lg-6 title-text">
                             <h1>Appointments</h1>
                             <p>Thank you for your interest in our services.  Please fill out the information below, and our scheduling coordinator will contact you to schedule an appointment time.  We look forward to seeing you soon.</p>
                             <p>Please note this form is for requesting an appointment.  If you need to cancel or reschedule an existing appointment, or if you require immediate attention, please contact our practice directly.</p>
@@ -209,6 +177,7 @@
                                             <input type="text" class="form-control" id="txtEmail" placeholder="Email" required>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-group">
                                         <p class="label">Referral Information</p>
                                         <label for="txtPatientFirstName">Name of the patient you are referring <span class="required">*</span>
@@ -256,13 +225,15 @@
                                 </form>
                               </div><!-- refer patient form -->
 
+
+
                               <div role="tabpanel" class="tab-pane" id="sponsor">
-                                <form role="form" id="dateSponsorshipRequest">
+                                <form role="form" id="sponsorshipRequest">
                                     <div class="form-group">
-                                      <label for="dateSponsorshipRequest">Requested Date</label>
+                                      <label for="dateSponsorshipRequest">Requested Date <span class="required">*</span></label>
                                       <div class="input-group date">                                    
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="text" class="form-control" id="dateSponsorshipRequest">
+                                        <input type="text" class="form-control" id="dateSponsorshipRequest" required>
                                       </div>
                                     </div>
                                     <div class="form-group">
@@ -418,16 +389,16 @@
 
                                     <hr>
                                     <div class="form-group">
-                                        <p class="label">Send Check/Ad to</p>                                                                           
-                                        <div class="row">
-                                            <label for="txtSendCheckTo" class="control-label">Address</label>     
-                                            <input type="text" class="form-control" id="txtSendCheckTo">
-                                        </div>
-                                        <div class="row">
-                                            <label for="txtSendCheckAddressLine2" class="control-label">Address Line 2</label>     
-                                            <input type="text" class="form-control" id="txtSendCheckAddressLine2">
-                                        </div>                              
+                                        <p class="label">Send Check/Ad to</p>                                                                                                                                             
                                     </div>
+                                    <div class="form-group">  
+                                        <label for="txtSendCheckTo" class="control-label">Address</label>     
+                                        <input type="text" class="form-control" id="txtSendCheckTo">
+                                    </div>
+                                    <div class="form-group">  
+                                        <label for="txtSendCheckAddressLine2" class="control-label">Address Line 2</label>     
+                                        <input type="text" class="form-control" id="txtSendCheckAddressLine2">
+                                    </div>    
                                     <div class="form-group">
                                         <label for="txtSendCheckCity">City and State</label>
                                         <label for="ddlSendCheckState" style="display:none;"></label>
@@ -495,7 +466,7 @@
                                     </div>
                                     <div class="form-group">                                    
                                         <label for="txtSendCheckZip" class="control-label">Zipcode <span class="required">*</span></label>
-                                        <input type="text" class="form-control" id="txtSendCheckZip" required>
+                                        <input type="text" class="form-control" id="txtSendCheckZip">
                                     </div>
                                     
                                    
