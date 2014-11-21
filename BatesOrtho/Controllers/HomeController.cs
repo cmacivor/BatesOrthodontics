@@ -45,6 +45,9 @@ namespace BatesOrtho.Controllers
             //StringBuilder sb = new StringBuilder();
             //sb.Append(noDates.OuterHtml);
             ViewBag.BlogTitle = noDates.OuterHtml;
+            string content = noDates.ParentNode.ParentNode.ParentNode.OuterHtml;
+            
+            //need to get the content and cut it off at 180 characters
 
             return View();
         }
