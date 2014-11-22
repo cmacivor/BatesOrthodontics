@@ -131,7 +131,7 @@ namespace BatesOrtho.Controllers
         public JsonResult CreateSponsorshipRequest(Sponsorship request)
         {
             
-            //return Json("OK");
+            
             return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 
@@ -169,8 +169,7 @@ namespace BatesOrtho.Controllers
                 mailer.Subject = "New Contact Request";
                 mailer.Body = message;
                 mailer.Send(mailer.Subject, message);
-                
-  
+
             }
             return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
@@ -249,9 +248,10 @@ namespace BatesOrtho.Controllers
                mailer.Subject = "New Appointment Request";
                mailer.Body = message;
                mailer.Send(mailer.Subject, message);
-           }
 
-            //return Json("OK");
+
+           }
+           //return Json("Please make sure you're filling all the required fields");
            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
         }
 

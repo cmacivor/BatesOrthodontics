@@ -76,18 +76,10 @@ $(document).ready(function (){
           }   
         }); */    
 
-
-
-
     //$('#btnSaveContactRequest').click(function (event) {
       //  event.preventDefault();
-      
-        
         //alert('test')
-        var firstNameC = $('#firstName').val();
-        var lastNameC = $('#lastName').val();
-        var emailC = $('#txtEmail').val();
-        var messageC = $('#message').val();
+       
         $("#contact-us").validate({    
           rules:{
             required: true, 
@@ -99,7 +91,11 @@ $(document).ready(function (){
             },
             message: "required"
           },
-        submitHandler: function(form) {
+          submitHandler: function (form) {
+              var firstNameC = $('#firstName').val();
+              var lastNameC = $('#lastName').val();
+              var emailC = $('#txtEmail').val();
+              var messageC = $('#message').val();
             $.ajax({
                 url: "/Home/CreateContactRequest",
                 type: 'POST',
@@ -115,52 +111,21 @@ $(document).ready(function (){
                     }
                 }),
                 success: function (data, status, jqXHR) {
-                    //console.log(data.url);
                     window.location.href = data.url;
-                    //alert(data.url);
-                    //console.log(data.url);
-                    //alert('test');
-                    //window.location.href = 'Home/ThankYou';
-                    //alert('test');
-                   // alert(data);
-                   // $('#divThankYou').text(data);
                 },
                 error: function (jqXHR, status, err) {
                     console.log(data);
                 },
                 complete: function (data) {
-                    //alert('test complete');
-                    //alert(data.url);
-                    //window.location.href = 'Home/ThankYou';
                 }
             });
         }
     });
 
 
-
     //$('#btnSaveSponsorshipRequest').click(function (event) {
         //event.preventDefault();
-      
-
-        var checkedValuesS = $('input[name="typeOfAd"]:checked').map(function () {
-            return this.value;
-        }).get();
-        
-        var dateS = $('#dateSponsorshipRequest').val();
-        var firstNameS = $('#txtFirstName').val();
-        var lastNameS = $('#txtLastName').val();
-        var phoneS = $('#txtPhone').val();
-        var addressS = $('#txtAddress').val();
-        var addressLine2S = $('#txtAddressLine2').val();
-        var cityS = $('#txtCity').val();
-        var stateS = $('#ddlState').val();
-        var zipS = $('#txtZip').val();
-        var statusS = $('#txtPatientTreatmentStatus').val();
-        var organizationS = $('#txtOrganization').val();
-        var checkpayabletoS = $('#txtCheckPayableTo').val();
-        var commentsS = $('#txtComments').val();
-        
+     
     $("#sponsorshipRequest").validate({    
       rules:{
         required: true,
@@ -168,7 +133,27 @@ $(document).ready(function (){
         txtLastName: "required",
         txtPhone: "required"                       
       },
-        submitHandler: function(form) {
+      submitHandler: function (form) {
+
+          var checkedValuesS = $('input[name="typeOfAd"]:checked').map(function () {
+              return this.value;
+          }).get();
+
+          var dateS = $('#dateSponsorshipRequest').val();
+          var firstNameS = $('#txtFirstName').val();
+          var lastNameS = $('#txtLastName').val();
+          var phoneS = $('#txtPhone').val();
+          var addressS = $('#txtAddress').val();
+          var addressLine2S = $('#txtAddressLine2').val();
+          var cityS = $('#txtCity').val();
+          var stateS = $('#ddlState').val();
+          var zipS = $('#txtZip').val();
+          var statusS = $('#txtPatientTreatmentStatus').val();
+          var organizationS = $('#txtOrganization').val();
+          var checkpayabletoS = $('#txtCheckPayableTo').val();
+          var commentsS = $('#txtComments').val();
+
+
             $.ajax({
                 url: "/Home/CreateSponsorshipRequest",
                 type: 'POST',
@@ -211,16 +196,6 @@ $(document).ready(function (){
     //$('#btnSaveDoctorReferral').click(function (event) {
        // event.preventDefault();
 
-        var firstNameR = $('#txtDoctorFirstName').val();
-        var lastNameR = $('#txtDoctorLastName').val();
-        var practiceNameR = $('#txtPracticeName').val();
-        var emailR = $('#txtEmail').val();
-        var patientFirstNameR = $('#txtPatientFirstName').val();
-        var patientLastNameR = $('#txtPatientLastName').val();
-        var patientPhoneR = $('#txtPatientPhone').val();
-        var patientEmailR = $('#txtPatientEmail').val();
-        var radiographsSentR = $("input:radio[name ='radiograph']:checked").val();
-        var commentsR = $('#txtComments').val();
 
        $("#patient-refer").validate({    
               rules:{
@@ -228,7 +203,7 @@ $(document).ready(function (){
                 txtDoctorFirstName: "required",
                 txtDoctorLastName: "required",
                 txtPracticeName: "required",
-                txtEmail:{
+                txtDoctorEmail: {
                     required: true,
                     email: true
                 },
@@ -246,7 +221,20 @@ $(document).ready(function (){
               }, 
            
 
-            submitHandler: function(form) {
+              submitHandler: function (form) {
+
+                  var firstNameR = $('#txtDoctorFirstName').val();
+                  var lastNameR = $('#txtDoctorLastName').val();
+                  var practiceNameR = $('#txtPracticeName').val();
+                  var emailR = $('#txtDoctorEmail').val();
+                  var patientFirstNameR = $('#txtPatientFirstName').val();
+                  var patientLastNameR = $('#txtPatientLastName').val();
+                  var patientPhoneR = $('#txtPatientPhone').val();
+                  var patientEmailR = $('#txtPatientEmail').val();
+                  var radiographsSentR = $("input:radio[name ='radiograph']:checked").val();
+                  var commentsR = $('#txtComments').val();
+
+                  alert(emailR);
                 $.ajax({
                     url: "/Home/CreateDoctorReferral",
                     type: 'POST',
@@ -279,25 +267,7 @@ $(document).ready(function (){
     /* $('#btnSaveAppointmentRequest').click(function() {
         
             event.preventDefault();  */
-            
-            var firstNameA = $('#txtFirstName').val();
-            var lastNameA = $('#txtLastName').val();
-            var dobA = $('#txtDOB').val();
-            var respPartyFirstNameA = $('#txtRespPartyFirstName').val();
-            var respPartyLastNameA = $('#txtRespPartyLastName').val();
-            var newPatientA = $('#ddlNewPatient').val();
-            var phoneA = $('#txtPhone').val();
-            var emailA = $('#txtEmail').val();
-            var modeOfContactA = $('#contactType').val();
-            var convenientTimesA = $('#txtConvenientTimes').val();
-            var howDidYouHearA = $('#txtHowDidYouHear').val();
-            var dentistNameA = $('#txtGeneralDentistName').val();
-            var commentsA = $('#txtAdditionalComments').val();
-
-            //for the checkboxes
-            var checkedValuesA = $('input[name="prefApptDays"]:checked').map(function (){
-                return this.value;
-            }).get();
+           
         
 
             //var jsonarray =  JSON.stringify(checkedValues);
@@ -324,7 +294,27 @@ $(document).ready(function (){
                     }
                 },  
                     
-                submitHandler: function(form) {      
+                  submitHandler: function (form) {
+
+                      var firstNameA = $('#txtFirstName').val();
+                      var lastNameA = $('#txtLastName').val();
+                      var dobA = $('#txtDOB').val();
+                      var respPartyFirstNameA = $('#txtRespPartyFirstName').val();
+                      var respPartyLastNameA = $('#txtRespPartyLastName').val();
+                      var newPatientA = $('#ddlNewPatient').val();
+                      var phoneA = $('#txtPhone').val();
+                      var emailA = $('#txtEmail').val();
+                      var modeOfContactA = $('#contactType').val();
+                      var convenientTimesA = $('#txtConvenientTimes').val();
+                      var howDidYouHearA = $('#txtHowDidYouHear').val();
+                      var dentistNameA = $('#txtGeneralDentistName').val();
+                      var commentsA = $('#txtAdditionalComments').val();
+
+                      //for the checkboxes
+                      var checkedValuesA = $('input[name="prefApptDays"]:checked').map(function () {
+                          return this.value;
+                      }).get();
+
                 $.ajax({
                     url: "/Home/CreateAppointmentRequest",
                     type: "POST",
