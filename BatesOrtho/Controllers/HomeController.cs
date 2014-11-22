@@ -130,9 +130,22 @@ namespace BatesOrtho.Controllers
         [HttpPost]
         public JsonResult CreateSponsorshipRequest(Sponsorship request)
         {
-            
-            
-            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
+            if (!String.IsNullOrEmpty(request.Date) && !String.IsNullOrEmpty(request.FirstName) && !String.IsNullOrEmpty(request.LastName)
+                && !String.IsNullOrEmpty(request.PhoneNumber) && !String.IsNullOrEmpty(request.Address) && !String.IsNullOrEmpty(request.City) 
+                && !String.IsNullOrEmpty(request.Zip) && !String.IsNullOrEmpty(request.PatientTreatmentStatus) && !String.IsNullOrEmpty(request.Organization)
+                && !String.IsNullOrEmpty(request.AdSize) && !String.IsNullOrEmpty(request.AdCost) && !String.IsNullOrEmpty(request.ArtworkEmailedTo)
+                && !String.IsNullOrEmpty(request.CheckPayableTo))
+            {
+                string path = Server.MapPath("~/EmailTemplates/SponsorshipRequestEmail.cshtml");
+                string template = System.IO.File.OpenText(path).ReadToEnd();
+                string message = Razor.Parse(template, request);
+                SendGmail mailer = new SendGmail();
+                mailer.Subject = "New SponsorshipRequest";
+                mailer.Body = message;
+                mailer.Send(mailer.Subject, message);
+                return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
+            }
+            return Json(new { result = "Redirect", url = Url.Action("AppointmentRequest", "Home") });            
         }
 
 
@@ -169,9 +182,9 @@ namespace BatesOrtho.Controllers
                 mailer.Subject = "New Contact Request";
                 mailer.Body = message;
                 mailer.Send(mailer.Subject, message);
-
+                return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
             }
-            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
+            return Json(new { result = "Redirect", url = Url.Action("Contact", "Home") });
         }
 
         //[HttpPost]

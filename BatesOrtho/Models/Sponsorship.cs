@@ -8,7 +8,8 @@ namespace BatesOrtho.Models
     public class Sponsorship
     {
         public int SponsorshipRequestID { get; set; }
-        public System.DateTime Date { get; set; }
+        //public System.DateTime Date { get; set; }
+        public string Date { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
@@ -27,5 +28,9 @@ namespace BatesOrtho.Models
         public string SendCheckToZip { get; set; }
         public string Comments { get; set; }
         public string[] AdTypes { get; set; }
+        public string AdSize { get; set; }
+        public string AdCost { get; set; }
+        public string DueDate { get; set; }
+        public string ArtworkEmailedTo { get; set; }
     }
 }

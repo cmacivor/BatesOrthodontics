@@ -1,8 +1,7 @@
 ﻿@{
     Layout = null;
 }
-@using BatesOrtho.Models
-@Model BatesOrtho.Models.AppointmentReq
+
 <!DOCTYPE html>
 
 <html>
@@ -23,6 +22,10 @@
         <p>Zip: @Model.Zip</p>
         <p>Patient Treatment Status: @Model.PatientTreatmentStatus</p>
         <p>Organization: @Model.Organization</p>
+        <p>Ad Size: @Model.AdSize</p>
+        <p>Ad Cost: @Model.AdCost</p>
+        <p>Due Date: @Model.DueDate</p>
+        <p>Artwork Emailed To: @Model.ArtworkEmailedTo</p>
         <p>Check Payable To: @Model.CheckPayableTo</p>
         <p>Send Check To Address: @Model.SendCheckToAddress</p>
         <p>Send Check To Address2: @Model.SendCheckToAddress2</p>

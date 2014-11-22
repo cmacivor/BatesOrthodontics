@@ -140,9 +140,9 @@ $(document).ready(function (){
           }).get();
 
           var dateS = $('#dateSponsorshipRequest').val();
-          var firstNameS = $('#txtFirstName').val();
-          var lastNameS = $('#txtLastName').val();
-          var phoneS = $('#txtPhone').val();
+          var firstNameS = $('#txtSponsorFirstName').val();
+          var lastNameS = $('#txtSponsorLastName').val();
+          var phoneS = $('#txtSponsorPhone').val();
           var addressS = $('#txtAddress').val();
           var addressLine2S = $('#txtAddressLine2').val();
           var cityS = $('#txtCity').val();
@@ -151,8 +151,16 @@ $(document).ready(function (){
           var statusS = $('#txtPatientTreatmentStatus').val();
           var organizationS = $('#txtOrganization').val();
           var checkpayabletoS = $('#txtCheckPayableTo').val();
-          var commentsS = $('#txtComments').val();
-
+          var commentsS = $('#txtSponsorComments').val();
+          var adSize = $('#txtSizeOfAd').val();
+          var adCost = $('#txtCost').val();
+          var dueDate = $('#txtDueDate').val();
+          var artworkEmail = $('#txtArtworkEmail').val();
+          var sendCheckTo = $('#txtSendCheckTo').val();
+          var sendCheckTo2 = $('#txtSendCheckAddressLine2').val();
+          var sendCheckToCity = $('#txtSendCheckCity').val();
+          var sendCheckToState = $('#ddlSendCheckState').val();
+          var sendCheckToZip = $('#txtSendCheckZip').val();
 
             $.ajax({
                 url: "/Home/CreateSponsorshipRequest",
@@ -179,7 +187,16 @@ $(document).ready(function (){
                         'State': stateS,
                         'Zip': zipS,
                         'Comments': commentsS,
-                        'AdTypes': checkedValuesS
+                        'AdTypes': checkedValuesS,
+                        'AdSize': adSize,
+                        'AdCost': adCost,
+                        'DueDate': dueDate,
+                        'ArtworkEmailedTo': artworkEmail,
+                        'SendCheckToAddress': sendCheckTo,
+                        'SendCheckToAddress2': sendCheckTo2,
+                        'SendCheckToCity': sendCheckToCity,
+                        'SendCheckToState': sendCheckToState,
+                        'SendCheckToZip': sendCheckToZip
                     } 
                 }),
                 success: function (data) {
