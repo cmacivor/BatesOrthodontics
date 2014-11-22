@@ -164,10 +164,9 @@ namespace BatesOrtho.Controllers
                 mailer.Subject = "New Doctor Referral";
                 mailer.Body = message;
                 mailer.Send(mailer.Subject, message);
+                return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
             }
-            
-            //return Json("OK");
-            return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
+            return Json(new { result = "Redirect", url = Url.Action("AppointmentRequest", "Home") });
         }
 
         [HttpPost]
@@ -261,11 +260,9 @@ namespace BatesOrtho.Controllers
                mailer.Subject = "New Appointment Request";
                mailer.Body = message;
                mailer.Send(mailer.Subject, message);
-
-
+               return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
            }
-           //return Json("Please make sure you're filling all the required fields");
-           return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
+           return Json(new { result = "Redirect", url = Url.Action("AppointmentRequest", "Home") });
         }
 
         //[HttpPost]
