@@ -21,15 +21,32 @@ namespace BatesOrtho.Controllers
 
         public ActionResult Index()
         {
-            //ViewBag.Test = "Woooo";
-            //string content = GetBlogContentString();
-
-            WebClient client = new WebClient();
-            string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
+            System.Net.WebClient client = new System.Net.WebClient();
+            //string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
+            string downloadString = Download("http://blog.bates-orthodontics.com/");
 
             var doc = new HtmlAgilityPack.HtmlDocument();
             //doc.Load(downloadString);
             doc.LoadHtml(downloadString);
+
+            var content = doc.DocumentNode.SelectNodes("//div[contains(@class,'entry-content')]");
+            
+            string t = HtmlRemoval.StripTagsRegex(content.FirstOrDefault().InnerHtml);
+            byte[] bytes = System.Text.Encoding.Default.GetBytes(t);
+            string s = System.Text.Encoding.UTF8.GetString(bytes);
+            Regex trimmer = new Regex(@"\s\s+");
+            s = trimmer.Replace(s, "  ");
+            //Console.WriteLine(s);
+
+            ViewBag.Content = s.Substring(0, 176) + "...";
+
+
+            //ViewBag.Test = "Woooo";
+            //string content = GetBlogContentString();
+
+            //WebClient client = new WebClient();
+            //string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
+
             var anchor = doc.DocumentNode.SelectNodes("//a[contains(@href, 'http://blog.bates-orthodontics.com/2014')]");
 
             var filtered = from f in anchor
@@ -45,7 +62,9 @@ namespace BatesOrtho.Controllers
             //StringBuilder sb = new StringBuilder();
             //sb.Append(noDates.OuterHtml);
             ViewBag.BlogTitle = noDates.OuterHtml;
-            string content = noDates.ParentNode.ParentNode.ParentNode.OuterHtml;
+            //string content = noDates.ParentNode.ParentNode.ParentNode.OuterHtml;
+            //var content = noDates.ParentNode.ParentNode.ParentNode.ParentNode.OuterHtml;
+            
             
             //need to get the content and cut it off at 180 characters
 
@@ -301,7 +320,85 @@ namespace BatesOrtho.Controllers
         //    }
         //}
 
+        private static String Download(String url)
+        {
+            String str = String.Empty;
+
+            try
+            {
+                System.Net.WebRequest request = System.Net.WebRequest.Create(url);
+                System.Net.WebResponse response = request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.Default);
+                str = reader.ReadToEnd();
+                reader.Close();
+                stream.Flush();
+                stream.Close();
+                response.Close();
+            }
+            catch { }
+
+            return str;
+        }
+
     }
 
+    /// <summary>
+    /// Methods to remove HTML from strings.
+    /// </summary>
+    public static class HtmlRemoval
+    {
+        /// <summary>
+        /// Remove HTML from string with Regex.
+        /// </summary>
+        public static string StripTagsRegex(string source)
+        {
+            return Regex.Replace(source, "<.*?>", string.Empty);
+        }
+
+        /// <summary>
+        /// Compiled regular expression for performance.
+        /// </summary>
+        static Regex _htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Remove HTML from string with compiled Regex.
+        /// </summary>
+        public static string StripTagsRegexCompiled(string source)
+        {
+            return _htmlRegex.Replace(source, string.Empty);
+        }
+
+        /// <summary>
+        /// Remove HTML tags from string using char array.
+        /// </summary>
+        public static string StripTagsCharArray(string source)
+        {
+            char[] array = new char[source.Length];
+            int arrayIndex = 0;
+            bool inside = false;
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                char let = source[i];
+                if (let == '<')
+                {
+                    inside = true;
+                    continue;
+                }
+                if (let == '>')
+                {
+                    inside = false;
+                    continue;
+                }
+                if (!inside)
+                {
+                    array[arrayIndex] = let;
+                    arrayIndex++;
+                }
+            }
+            return new string(array, 0, arrayIndex);
+        }
+    }
    
 }
