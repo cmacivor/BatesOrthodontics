@@ -84,43 +84,6 @@ namespace BatesOrtho.Controllers
             return View();
         }
 
-        public ActionResult Blog()
-        {
-            WebClient client = new WebClient();
-            string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
-
-            var doc = new HtmlAgilityPack.HtmlDocument();
-            //doc.Load(downloadString);
-            doc.LoadHtml(downloadString);
-            var anchor = doc.DocumentNode.SelectNodes("//a[contains(@href, 'http://blog.bates-orthodontics.com/2014')]");
-
-            var filtered = from f in anchor
-                           where f.InnerText.Contains("Comment") ||
-                           f.InnerText.Contains("Leave a reply")
-                           select f;
-            var nonReplyLinks = anchor.Except(filtered);
-
-            var datedLinks = from d in nonReplyLinks
-                             where d.InnerText.Contains("2014")
-                             select d;
-            var noDates = nonReplyLinks.Except(datedLinks);
-            StringBuilder sb = new StringBuilder();
-            
-            foreach (var item in noDates)
-            {
-                //Console.WriteLine(item.ParentNode.InnerHtml);
-                //Console.WriteLine(item.OuterHtml);
-                //string test = item.OuterHtml;
-                sb.Append(item.OuterHtml);
-                sb.Append("</br>");
-            }
-
-            //ViewBag.Message = "This is a test";
-            //return View();
-            //return sb.ToString();
-            return Content(sb.ToString());
-        }
-
         public ActionResult AppointmentRequest()
         {
             ViewBag.Message = "appointment request";
@@ -197,63 +160,7 @@ namespace BatesOrtho.Controllers
             return Json(new { result = "Redirect", url = Url.Action("Contact", "Home") });
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> CreateContactRequest(Contact request)
-        //{
-        //    if (!String.IsNullOrEmpty(request.FirstName) && !String.IsNullOrEmpty(request.Email))
-        //    {
-        //        string path = Server.MapPath("~/EmailTemplates/ContactEmail.cshtml");
-        //        string template = System.IO.File.OpenText(path).ReadToEnd();
-        //        string message = Razor.Parse(template, request);
-        //        SendGmail mailer = new SendGmail();
-        //        mailer.Subject = "New Contact Request";
-        //        mailer.Body = message;
-        //        await mailer.Send(mailer.Subject, message);
-
-
-        //    }
-        //    return Json(new { result = "Redirect", url = Url.Action("ThankYou", "Home") });
-        //}
-
-        //[HttpGet]
-        //public string GetBlogPost()
-        //{
-        //   //string content 
-        //}
-
-        public string GetBlogContentString()
-        {
-            WebClient client = new WebClient();
-            string downloadString = client.DownloadString("http://blog.bates-orthodontics.com/");
-
-            var doc = new HtmlAgilityPack.HtmlDocument();
-            //doc.Load(downloadString);
-            doc.LoadHtml(downloadString);
-            var anchor = doc.DocumentNode.SelectNodes("//a[contains(@href, 'http://blog.bates-orthodontics.com/2014')]");
-
-            var filtered = from f in anchor
-                           where f.InnerText.Contains("Comment") ||
-                           f.InnerText.Contains("Leave a reply")
-                           select f;
-            var nonReplyLinks = anchor.Except(filtered);
-
-            var datedLinks = from d in nonReplyLinks
-                             where d.InnerText.Contains("2014")
-                             select d;
-            var noDates = nonReplyLinks.Except(datedLinks).FirstOrDefault();
-            StringBuilder sb = new StringBuilder();
-            sb.Append(noDates.OuterHtml);
-            //foreach (var item in noDates)
-            //{
-            //    //Console.WriteLine(item.ParentNode.InnerHtml);
-            //    //Console.WriteLine(item.OuterHtml);
-            //    //string test = item.OuterHtml;
-            //    sb.Append(item.OuterHtml);
-            //    sb.Append("</br>");
-            //}
-            return sb.ToString();
-        }
-
+      
         [HttpPost]
         public JsonResult CreateAppointmentRequest(AppointmentReq apptRequest)
         {
@@ -275,42 +182,6 @@ namespace BatesOrtho.Controllers
            }
            return Json(new { result = "Redirect", url = Url.Action("AppointmentRequest", "Home") });
         }
-
-        //[HttpPost]
-        //public JsonResult CreatePreferredAppointmentDay(string[] checkedValues)
-        //{
-        //    using (var ctx = new BatesOrthoEntities())
-        //    {
-        //        var justEntered = (from a in ctx.AppointmentRequests
-        //                           orderby a.AppointmentRequestID descending
-        //                           select a).FirstOrDefault();
-
-        //        foreach (var day in checkedValues)
-        //        {
-        //            PreferredAppointmentDay preferredDay = new PreferredAppointmentDay();
-        //            preferredDay.AppointmentRequestDay = day;
-        //            preferredDay.AppointmentRequestID = justEntered.AppointmentRequestID;
-        //            ctx.PreferredAppointmentDays.Add(preferredDay);
-                    
-        //        }
-        //        ctx.SaveChanges();
-        //    }
-
-        //    return Json("OK");
-        //}
-
-
-        //string ReadTextFromUrl(string url)
-        //{
-        //    // WebClient is still convenient
-        //    // Assume UTF8, but detect BOM - could also honor response charset I suppose
-        //    using (var client = new WebClient())
-        //    using (var stream = client.OpenRead(url))
-        //    using (var textReader = new StreamReader(stream, Encoding., true))
-        //    {
-        //        return textReader.ReadToEnd();
-        //    }
-        //}
 
         private static String Download(String url)
         {

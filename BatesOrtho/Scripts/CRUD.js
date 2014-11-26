@@ -5,81 +5,6 @@
 
 $(document).ready(function (){
 
-
-    /* Validations
-    $("#patient-appt").validate({     
-          rules:{
-            required: true, 
-            txtFirstName: "required",
-            txtLastName: "required",
-            txtDOB: "required",
-            txtRespPartyFirstName: "required",
-            txtRespPartyLastName: "required",
-            ddlNewPatient: "required",
-            txtPhone: "required",
-            txtEmail:{
-                required: true,
-                email: true
-            },
-            contactType: "required",            
-            prefApptDays: {
-                  required: true,
-                  minlength: 1
-            }
-
-          }   
-        });*/
-
-        /*$("#patient-refer").validate({    
-          rules:{
-            required: true,             
-            txtDoctorFirstName: "required",
-            txtDoctorLastName: "required",
-            txtPracticeName: "required",
-            txtEmail:{
-                required: true,
-                email: true
-            },
-            txtPatientFirstName: "required",
-            txtPatientLastName: "required",
-            txtPatientPhone: "required",
-            txtPatientEmail:{
-                required: true,
-                email: true
-            },
-            radiograph: {
-                  required: true,
-                  minlength: 1
-              }
-          }   
-        });  */   
-
-        /*$("#sponsorshipRequest").validate({    
-          rules:{
-            required: true,
-            txtFirstName: "required",
-            txtLastName: "required",
-            txtPhone: "required"                       
-          }   
-        });     */
-
-        /*$("#contact-us").validate({    
-          rules:{
-            required: true, 
-            firstName: "required",                       
-            lastName: "required",
-            txtEmail:{
-                required: true,
-                email: true
-            },
-            message: "required"
-          }   
-        }); */    
-
-    //$('#btnSaveContactRequest').click(function (event) {
-      //  event.preventDefault();
-        //alert('test')
-       
         $("#contact-us").validate({    
           rules:{
             required: true, 
@@ -121,10 +46,6 @@ $(document).ready(function (){
             });
         }
     });
-
-
-    //$('#btnSaveSponsorshipRequest').click(function (event) {
-        //event.preventDefault();
      
     $("#sponsorshipRequest").validate({    
       rules:{
@@ -210,10 +131,6 @@ $(document).ready(function (){
     });
 
 
-    //$('#btnSaveDoctorReferral').click(function (event) {
-       // event.preventDefault();
-
-
        $("#patient-refer").validate({    
               rules:{
                 required: true,             
@@ -251,7 +168,7 @@ $(document).ready(function (){
                   var radiographsSentR = $("input:radio[name ='radiograph']:checked").val();
                   var commentsR = $('#txtComments').val();
 
-                  alert(emailR);
+                  //alert(emailR);
                 $.ajax({
                     url: "/Home/CreateDoctorReferral",
                     type: 'POST',
@@ -281,15 +198,7 @@ $(document).ready(function (){
         });
 
 
-    /* $('#btnSaveAppointmentRequest').click(function() {
-        
-            event.preventDefault();  */
-           
-        
-
-            //var jsonarray =  JSON.stringify(checkedValues);
-            //console.log(jsonarray);
-            //console.log(checkedValues);
+    
             $("#patient-appt").validate({     
                   rules:{
                     required: true, 
@@ -353,7 +262,6 @@ $(document).ready(function (){
                             'AdditionalComments': commentsA,
                             'PreferredDays': checkedValuesA
                         }
-                        //preferredDays: { 'AppointmentRequestDay': checkedValues }
                     }),
                     success: function (data) {
                             window.location.href = data.url;
@@ -366,8 +274,7 @@ $(document).ready(function (){
                 return false;
             }
         });
-    // });
-
+  
 });
 
 
