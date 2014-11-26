@@ -1,5 +1,6 @@
 ﻿/// <reference path="jquery-1.10.2.intellisense.js" />
 /// <reference path="jquery-1.10.2.js" />
+/// <reference path="bootstrap-datepicker.js" />
 
 //this file will hold all the CRUD AJAX calls and client side validation
 
@@ -47,6 +48,26 @@ $(document).ready(function (){
         }
     });
      
+    $('#dateSponsorshipRequest').datepicker({
+        autoclose: true,
+
+    }).on('changeDate', function (evt) {
+        //alert('woo');
+        if ($('#dateSponsorshipRequest').valid()) {
+            $('#dateSponsorshipRequest').removeClass('invalid').addClass('success');
+        }
+    });
+
+    $('#txtDOB').datepicker({
+        autoclose: true,
+
+    }).on('changeDate', function (evt) {
+        //alert('woo');
+        if ($('#txtDOB').valid()) {
+            $('#txtDOB').removeClass('invalid').addClass('success');
+        }
+    });
+
     $("#sponsorshipRequest").validate({    
       rules:{
         required: true,
