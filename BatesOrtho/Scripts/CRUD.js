@@ -73,7 +73,11 @@ $(document).ready(function (){
         required: true,
         txtFirstName: "required",
         txtLastName: "required",
-        txtPhone: "required"                       
+        txtPhone: "required",
+        txtArtworkEmail: {
+            required: true,
+            email: true
+        }
       },
       submitHandler: function (form) {
 
