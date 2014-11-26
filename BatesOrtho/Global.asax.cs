@@ -17,5 +17,14 @@ namespace BatesOrtho
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error()
+        {
+            Server.ClearError();
+
+            //send email here as well
+
+            Response.Redirect("/home/error");
+        }
     }
 }

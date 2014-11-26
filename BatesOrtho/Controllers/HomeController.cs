@@ -204,6 +204,27 @@ namespace BatesOrtho.Controllers
             return str;
         }
 
+        //handle exceptions
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (!filterContext.ExceptionHandled)
+            {
+                string controller = filterContext.RouteData.Values["controller"].ToString();
+                string action = filterContext.RouteData.Values["action"].ToString();
+                Exception ex = filterContext.Exception;
+
+
+                //do something with these details here
+                //need to have separate email utilities for sending myself error emails and legit emails to Sheldon
+                SendGmail mailer = new SendGmail();
+                mailer.Subject = "New Contact Request";
+                mailer.Body = ex.Message + " " + ex.InnerException;
+                mailer.Send(mailer.Subject, ex.Message + " " + ex.InnerException);
+
+                RedirectToAction("Error", "Home");
+            }
+        }
+
     }
 
     /// <summary>
