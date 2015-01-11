@@ -36,11 +36,28 @@ namespace BatesOrtho.Controllers
             string s = System.Text.Encoding.UTF8.GetString(bytes);
             Regex trimmer = new Regex(@"\s\s+");
             s = trimmer.Replace(s, "  ");
-     
-            ViewBag.Content = s.Substring(0, 176) + "...";
+            string trimmed = "";
+            if (s.Length >= 176)
+            {
+                trimmed = s.Substring(0, 176) + "...";
+                ViewBag.Content = trimmed;
+            }
+            else
+            {
+                ViewBag.Content = s;
+            }
+            //ViewBag.Content = s.Substring(0, 176) + "...";
+            //ViewBag.Content = trimmed;
             string year = DateTime.Now.ToString("yyyy");
             string link = "//a[contains(@href, " + "'http://blog.bates-orthodontics.com/" + year + "')]";
             var anchor = doc.DocumentNode.SelectNodes(link);
+            if (anchor == null)
+            {
+                year = Convert.ToString(Convert.ToInt32(year) - 1);
+                link = "//a[contains(@href, " + "'http://blog.bates-orthodontics.com/" + year + "')]";
+                anchor = doc.DocumentNode.SelectNodes(link);
+            }
+
             var date = (from d in anchor
                         where d.InnerHtml.Contains("datetime")
                         select d).FirstOrDefault();
@@ -48,19 +65,20 @@ namespace BatesOrtho.Controllers
 
 
             var filtered = from f in anchor
-                           where f.InnerText.Contains("Comment") ||
-                           f.InnerText.Contains("Leave a reply")
-                           select f;
+                            where f.InnerText.Contains("Comment") ||
+                            f.InnerText.Contains("Leave a reply")
+                            select f;
             var nonReplyLinks = anchor.Except(filtered);
 
             var datedLinks = from d in nonReplyLinks
-                             where d.InnerText.Contains(year)
-                             select d;
+                                where d.InnerText.Contains(year)
+                                select d;
             var noDates = nonReplyLinks.Except(datedLinks).FirstOrDefault();
-        
+
             ViewBag.BlogTitle = noDates.OuterHtml;
 
             return View();
+           
         }
 
         public ActionResult About()

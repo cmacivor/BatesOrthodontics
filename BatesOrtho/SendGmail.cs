@@ -95,7 +95,7 @@ namespace BatesOrtho
             smtp.Timeout = 30000;
 
            
-            MailMessage message = new MailMessage("cmacivor@yahoo.com", ToEmail, subjectText, messageBody);
+            MailMessage message = new MailMessage("cmacivor82@gmail.com", ToEmail, subjectText, messageBody);
             message.Subject = Subject;
             message.Body = Body;
             message.IsBodyHtml = IsHtml;
