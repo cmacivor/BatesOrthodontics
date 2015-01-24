@@ -28,18 +28,32 @@ namespace BatesOrtho
         {
             get { return toEmail; }
         }
-        private string gmailPassword = "Caesar2810$";
+
+        private string gmailPassword = "batesortho";
+        private string errorGmailPassword = "Caesar2810$";
+
+        public string ErrorGmailPassword 
+        {
+            get { return errorGmailPassword; }
+        }
 
         public string GmailPassword
         {
             get { return gmailPassword; }
         }
-        private string gmailUserName = "cmacivor82@gmail.com";
+        private string gmailUserName = "batesorthodontics@gmail.com";
+        private string errorGmailUserName = "cmacivor82@gmail.com";
 
         public string GmailUserName
         {
             get { return gmailUserName; }
         }
+
+        public string ErrorGmailUserName 
+        {
+            get { return errorGmailUserName; } 
+        }
+
         private bool isHtml = true;
 
         public bool IsHtml 
@@ -85,6 +99,7 @@ namespace BatesOrtho
 
         public void Send(string subjectText, string messageBody)
         {
+            
             SmtpClient smtp = new SmtpClient();
             smtp.Host = GmailHost;
             smtp.Port = GmailPort;
@@ -94,13 +109,47 @@ namespace BatesOrtho
             smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
             smtp.Timeout = 30000;
 
+
+            MailMessage message = new MailMessage("batesorthodontics@gmail.com", ToEmail, subjectText, messageBody);
+            message.Subject = Subject;
+            message.Body = Body;
+            message.IsBodyHtml = IsHtml;
+
+            new Thread(() =>
+            {
+                try
+                {
+                    smtp.Send(message);
+                    message.Dispose();
+                }
+                catch (SmtpException ex)
+                {
+                    this.SendError("unable to login", ex.Message + " " + ex.InnerException);
+                }
+                    
+            }).Start();
            
+        }
+
+        public void SendError(string subjectText, string messageBody)
+        {
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = GmailHost;
+            smtp.Port = GmailPort;
+            smtp.EnableSsl = GmailSSL;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(ErrorGmailUserName, ErrorGmailPassword);
+            smtp.Timeout = 30000;
+
+
             MailMessage message = new MailMessage("cmacivor82@gmail.com", ToEmail, subjectText, messageBody);
             message.Subject = Subject;
             message.Body = Body;
             message.IsBodyHtml = IsHtml;
-               
-            new Thread(() => { 
+
+            new Thread(() =>
+            {
                 smtp.Send(message);
                 message.Dispose();
             }).Start();

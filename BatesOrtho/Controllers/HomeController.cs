@@ -248,7 +248,7 @@ namespace BatesOrtho.Controllers
                 SendGmail mailer = new SendGmail();
                 mailer.Subject = "New Contact Request";
                 mailer.Body = ex.Message + " " + ex.InnerException;
-                mailer.Send(mailer.Subject, ex.Message + " " + ex.InnerException);
+                mailer.SendError(mailer.Subject, ex.Message + " " + ex.InnerException);
 
                 RedirectToAction("Error", "Home");
             }
