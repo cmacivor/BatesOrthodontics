@@ -106,11 +106,11 @@ namespace BatesOrtho
             smtp.EnableSsl = GmailSSL;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
+            smtp.Credentials = new NetworkCredential(ToEmail, GmailPassword);
             smtp.Timeout = 30000;
 
 
-            MailMessage message = new MailMessage("batesorthodontics@gmail.com", ToEmail, subjectText, messageBody);
+            MailMessage message = new MailMessage(ToEmail, ToEmail, subjectText, messageBody);
             message.Subject = Subject;
             message.Body = Body;
             message.IsBodyHtml = IsHtml;
@@ -143,7 +143,7 @@ namespace BatesOrtho
             smtp.Timeout = 30000;
 
 
-            MailMessage message = new MailMessage("cmacivor82@gmail.com", ToEmail, subjectText, messageBody);
+            MailMessage message = new MailMessage(ErrorGmailUserName, ErrorGmailUserName, subjectText, messageBody);
             message.Subject = Subject;
             message.Body = Body;
             message.IsBodyHtml = IsHtml;
