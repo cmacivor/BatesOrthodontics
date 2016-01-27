@@ -1,9 +1,9 @@
-﻿
-body {
+﻿body {
     font-size: 130%;  
     color:#444;   
     font-family:"lato", sans-serif;  
     position: relative; 
+    background: #fcfcfc;
 }
 
 #wrapper{
@@ -316,16 +316,16 @@ ul.sidebar li a{
     
 }
 #top-header{    
-    color:#eaeaea;
-    background: #2e2e30;
+    color:#fff;
+    background: #3F7DB3;
     border-bottom:3px solid #f89938;
     text-transform: uppercase;
     padding: 0px 0 0px;
 }
 #top-header p{
     font-size: .5em;
-    font-weight: 300;
-    color: #888;
+    font-weight: 500;
+    color: #fff;
 }
 .toggle-header{
     margin-top:-50px;
@@ -344,11 +344,11 @@ ul.sidebar li a{
     font-size:1.125em;
     font-weight: 500;
     padding-left:3px;
-    text-shadow: 0px 3px 1px #222, 0px -1px 1px #000, 0px -1px 1px #F89930;
+    text-shadow:none;
 }
 .highlight-text a{
     color: #f89938;
-    text-shadow: 0px 3px 1px #222, 0px -1px 1px #000, 0px -1px 1px #F89930;
+    text-shadow:none;
 }
 .highlight-text small{
     font-size: .65em !important;
@@ -507,6 +507,16 @@ ul.sidebar li a{
 }
 
 /* -- Containers -- */
+.footer-exerpt{
+    padding-left:0;
+    padding-right: 0;
+}
+.footer-exerpt small{   
+    color: #999;
+    padding-bottom: 60px;
+    display: block;
+    padding-top: 70px;
+}
 #footer, #main-content .container{
     padding:30px 0 40px;
 }
@@ -516,7 +526,10 @@ ul.sidebar li a{
     border-top:3px solid #ffc181;
     background: #f9f3e7;
 }
-
+.small-p{
+    font-size:70%; 
+    color:#aaa;
+}
 
 
 
