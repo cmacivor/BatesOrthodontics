@@ -52,7 +52,9 @@ namespace BatesOrtho.Controllers
                 //ViewBag.Content = trimmed;
                 string year = DateTime.Now.ToString("yyyy");
                 string link = "//a[contains(@href, " + "'http://blog.bates-orthodontics.com/" + year + "')]";
+
                 var anchor = doc.DocumentNode.SelectNodes(link);
+
                 if (anchor == null)
                 {
                     year = Convert.ToString(Convert.ToInt32(year) - 1);
